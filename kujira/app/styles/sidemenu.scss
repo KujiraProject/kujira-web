@@ -1,10 +1,10 @@
-
 #wrapper {
     padding-left: 0;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
+    padding-top: 50px;
 }
 
 #wrapper.toggled {
@@ -19,10 +19,7 @@
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
-    border-color: #e7e7e7;
-    border-style: solid;
-    border-width: 0px 1px 0px 0px;
-    background: #f8f8f8;
+    background: #323232;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -51,47 +48,44 @@
     top: 0;
     width: 250px;
     margin: 0;
-    padding: 0;
+    padding: 0px;
     list-style: none;
 }
 
 .sidebar-nav li {
     text-indent: 20px;
     line-height: 40px;
+    padding: 10px 0px 10px 0px;
+    border-bottom: 1px solid rgba(107, 108, 109, 0.2);
 }
 
 .sidebar-nav li a {
     display: block;
     text-decoration: none;
-    color: #7a7e8a;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    color: #c0c0c0;
+}
+
+.sidebar-nav li a span{
+  float: left;
+  line-height: inherit;
 }
 
 .sidebar-nav li a:hover {
     text-decoration: none;
-    color: #666666;
-    background: #e7e7e7;
+    color: #f09b22;
 }
 
-.sidebar-nav li a:active,
-.sidebar-nav li a:focus {
+.sidebar-nav li.selected {
+    background: #1b1b1b;
+}
+
+.sidebar-nav li.selected a{
     text-decoration: none;
+    color: #f09b22;
 }
 
-.sidebar-nav > .sidebar-brand {
-    height: 65px;
-    font-size: 18px;
-    font-family: 'Raleway', sans-serif;
-    line-height: 60px;
-}
-
-.sidebar-nav > .sidebar-brand a {
-    color: #999999;
-}
-
-.sidebar-nav > .sidebar-brand a:hover {
-    color: #fff;
-    background: none;
-}
 
 @media(min-width:768px) {
     #wrapper {
@@ -119,42 +113,4 @@
         position: relative;
         margin-right: 0;
     }
-}
-
-.navbar-default {
-  margin-bottom: 0px !important;
-}
-
-
-
-div.info-box {
-  height: 100px;
-  background-color: #ffffff;
-  box-shadow: 0px 1px 1px rgba(0,0,0,0.1);
-}
-
-div.info-box-success {
-  float: left;
-  height: inherit;
-  width: 100px;
-  background-color: #00a65a;
-}
-
-div.info-box-success span {
-  display:block;
-  text-align: center;
-  color: #ffffff;
-  font-size: 30px;
-  min-height:  100px;
-  line-height: 100px;
-}
-
-div.info-box div.info-box-content {
-  margin-left: 100px;
-  padding: 10px 10px 10px 10px;
-}
-
-div.info-box div.info-box-content span.info-box-title{
-  font-family: 'Source Sans Pro', 'Helvetica Neue' Helvetica,  Arial, sans-serif
-  font-size: 14px;
 }
