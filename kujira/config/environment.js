@@ -4,7 +4,7 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'kujira',
     environment: environment,
-    baseURL: '/',
+    baseURL: '/kujira',
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
