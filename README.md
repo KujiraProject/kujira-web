@@ -3,13 +3,10 @@
 
 Front end Web Interface for Kujira written in EmberJS
 
-
-Install node 0.12.7 following instructions[How To Install Using NVM]:
-
-https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-an-ubuntu-14-04-server
-
-nvm install 0.12.7
-
-npm install -g npm
-
-npm install -g ember-cli@beta
+1. Fork kujira-web repository
+2. Clone your fork to development machine: https://github.com/KujiraProject/vagrant/tree/master/development
+3. enter kujira directory
+4. npm install
+5. bower install
+6. ember serve
+7. go to localhost:4200
