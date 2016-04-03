@@ -1,33 +1,27 @@
-
 import Ember from 'ember';
-var run= Ember.run;
+import ENV from 'kujira/config/enviroment';
 var socket;
-var hostName ='';
+var events = ["osdAdded", "osdRemoved"];
 
-export default Ember.Service.extend(Ember.Evented,{
+export default Ember.Service.extend(Ember.Evented, {
 
-  onInit: function(){
+    onInit: function() {
+        socket = io.connect(ENV.APP.API_HOST);
+        socket.on('message', this.onMessage, this);
+        socket.on('close', function(event) {
+            socket = io.connect(hostName);
+        }, this);
+    }.on(init),
 
-    socket = io.connect(hostName);
-    socket.on('message', this.onMessage, this);
-    socket.on('close', function(event) {
-       socket= io.connect(hostName);
-   }, this);
-
-  }.on(init),
-  onMessage: function(message){
-
-    var obj= JSON.parse(message);
-
-    var type = Ember.compare(message.eventType, 'osdAdded');
-    {{#if type}}
-      this.trigger('osdAdded',message);
-      {{else}}
-      type = Ember.compare(message.eventType, 'osdRemoved');
-        {{#if type}}
-        this.trigger('osdRemoved',message);
-        {{/if}}
-    {{/if}}
-    alter(message.message);
-  }
+    onMessage: function(message) {
+        var obj = JSON.parse(message);
+        var len = events.length;
+        var objMessage = obj.message;
+        for (var i = 0; i < len; i++) {
+            if (objMessage == events[i]) {
+                this.trigger(events[i], obj);
+            }
+        }
+        alter(objMessage);
+    }
 });
