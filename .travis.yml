@@ -15,9 +15,9 @@ before_install:
   - "npm install -g npm@^2"
 
 install:
-  - npm install -g bower
-  - npm install
-  - bower install
+  - cd kujira; npm install -g bower
+  - cd kujira; npm install
+  - cd kujira; bower install
 
 script:
-  - npm test
+  - cd kujira; npm test
