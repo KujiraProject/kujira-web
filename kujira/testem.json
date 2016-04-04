@@ -1,0 +1,29 @@
+{
+  "framework": "qunit",
+  "test_page": "tests/index.html?hidepassed",
+  "disable_watching": true,
+  "launch_in_ci": [
+    "SL_firefox_public_Windows_7"
+  ],
+  "launch_in_dev": [
+    "PhantomJS"
+  ],
+  "launchers": {
+    "SL_firefox_public_Windows_7": {
+      "exe": "ember",
+      "args": [
+        "sauce:launch",
+        "-b",
+        "firefox",
+        "--vi",
+        "public",
+        "-p",
+        "Windows 7",
+        "--at",
+        "--no-ct",
+        "--u"
+      ],
+      "protocol": "browser"
+    }
+  }
+}

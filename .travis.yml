@@ -10,7 +10,8 @@ sudo: false
 
 cache:
   directories:
-    - node_modules
+    - kujira/node_modules
+    - kujira/bower_modules
 
 before_install:
   - "cd kujira"
