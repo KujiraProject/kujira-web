@@ -1,7 +1,10 @@
 ---
 language: node_js
 node_js:
-  - "0.12"
+  - "stable"
+
+addons:
+  sauce_connect: true
 
 sudo: false
 
@@ -10,14 +13,14 @@ cache:
     - node_modules
 
 before_install:
-  - export PATH=/usr/local/phantomjs-2.0.0/bin:$PATH
+  - "cd kujira"
   - "npm config set spin false"
   - "npm install -g npm@^2"
 
 install:
-  - cd kujira; npm install -g bower
-  - cd kujira; npm install
-  - cd kujira; bower install
+  - npm install -g bower
+  - npm install
+  - bower install
 
 script:
-  - cd kujira; npm test
+  - npm test
