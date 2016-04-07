@@ -8,7 +8,7 @@ export default Ember.Service.extend(Ember.Evented, {
 
 onInit: function() {
     socket = io.connect(ENV.APP.API_HOST, ENV.APP.API_PORT, ENV.APP.API_NAMESPACE);
-//???    socket.on('eventNotification', this.eventNotification, this);
+    socket.on('eventNotification', this.eventNotification, this);
     alert(ENV.APP.API_HOST);
     socket.on('close', function() {
         socket = io.disconnect(ENV.APP.API_HOST, ENV.APP.API_PORT, ENV.APP.API_NAMESPACE);
