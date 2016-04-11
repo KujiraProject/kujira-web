@@ -1,1 +1,26 @@
-monitors
+<h2>Monitors</h2>
+
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Address</th>
+      <th>In quorum</th>
+      <th>Name</th>
+      <th>Rank</th>
+      <th>Server</th>
+    </tr>
+  </thead>
+  <tbody>
+      {{#each model as |mon|}}
+          <tr>
+            <td> {{mon.id}} </td>
+            <td> {{mon.addr}} </td>
+            <td> {{mon.inQuorum}} </td>
+            <td> {{mon.name}} </td>
+            <td> {{mon.rank}} </td>
+            <td> {{mon.server}} </td>
+          </tr>
+      {{/each}}
+  </tbody>
+</table>

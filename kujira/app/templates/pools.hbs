@@ -1,1 +1,30 @@
-pools
+<h2>Pools</h2>
+
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr>
+      <th>Full</th>
+      <th>Name</th>
+      <th>Min. Size</th>
+      <th>Pg Num</th>
+      <th>Pgp Num</th>
+      <th>Size</th>
+      <th>ID</th>
+      <th>Crush Ruleset</th>
+    </tr>
+  </thead>
+  <tbody>
+      {{#each model as |pool|}}
+          <tr>
+            <td> {{pool.full}} </td>
+            <td> {{pool.name}} </td>
+            <td> {{pool.min_size}} </td>
+            <td> {{pool.pg_num}} </td>
+            <td> {{pool.pgp_num}} </td>
+            <td> {{pool.size}} </td>
+            <td> {{pool.id}} </td>
+            <td> {{pool.crush_ruleset}} </td>
+          </tr>
+      {{/each}}
+  </tbody>
+</table>
