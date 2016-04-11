@@ -14,7 +14,7 @@ module.exports = function(environment) {
     },
 
     APP: {
-      NAMESPACE: "/kujira/api/v1"
+      NAMESPACE: "kujira/api/v1"
       // Here you can pass flags/options to your application instance
       // when it is created
     }
