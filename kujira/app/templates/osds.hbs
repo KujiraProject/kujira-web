@@ -1,1 +1,22 @@
-osds
+  <h2>OSDs</h2>
+
+  <table class="table table-hover table-bordered">
+    <thead>
+      <tr>
+        <th>Server</th>
+        <th>Reweight</th>
+        <th>Up</th>
+        <th>In</th>
+      </tr>
+    </thead>
+    <tbody>
+        {{#each model as |osd|}}
+            <tr>
+              <td> {{osd.server}} </td>
+              <td> {{osd.reweight}} </td>
+              <td> {{osd.up}} </td>
+              <td> {{osd.in}} </td>
+            </tr>
+        {{/each}}
+    </tbody>
+  </table>
