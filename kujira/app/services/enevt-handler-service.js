@@ -1,4 +1,4 @@
-import Ember from 'event-handler-service.js';
+import Ember from 'ember';
 import io from 'socket.io';
 import ENV from 'kujira/config/enviroment';
 
