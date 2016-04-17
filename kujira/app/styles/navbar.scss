@@ -29,12 +29,25 @@
   background: #323232;
 }
 
+.navbar-right {
+    margin-right: 0px;
+}
+
 .nav > li > a{
-  color: #c0c0c0 !important;
+  color: #FFFFFF !important;
+  &.ok {
+    color: #00a65a !important;
+  }
+  &.error {
+    color: #dd4b39 !important;
+  }
+  &.warning {
+    color: #f09b22 !important;
+  }
 }
 
 .nav > li > a:hover {
-  color: #f09b22 !important;
+//   color: #f09b22 !important;
 }
 
 .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {

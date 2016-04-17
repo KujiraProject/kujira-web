@@ -4,10 +4,23 @@ export default function() {
 
 this.namespace = config.APP.NAMESPACE;
 
+this.get('/clusters/:id', function(db, request){
+  let id = request.params.id;
+
+  return {
+    data: {
+      type: 'clusters',
+      id: id,
+      attributes: db.cluster.find(id)
+    }
+  };
+
+});
+
 this.get('/osds', function(db/*, request*/){
   return {
     data: db.osds.map(attrs => (
-      { type: 'osd', id: attrs.id, attributes: attrs}
+      { type: 'osds', id: attrs.id, attributes: attrs}
     ))
   };
 });
@@ -15,7 +28,7 @@ this.get('/osds', function(db/*, request*/){
 this.get('/mons', function(db){
   return {
     data: db.mons.map(attrs => (
-      { type: 'mon', id: attrs.id, attributes: attrs}
+      { type: 'mons', id: attrs.id, attributes: attrs}
     ))
   };
 });
@@ -23,7 +36,7 @@ this.get('/mons', function(db){
 this.get('/nodes', function(db){
   return {
     data: db.nodes.map(attrs => (
-      { type: 'node', id: attrs.id, attributes: attrs}
+      { type: 'nodes', id: attrs.id, attributes: attrs}
     ))
   };
 });
@@ -31,7 +44,7 @@ this.get('/nodes', function(db){
 this.get('/pools', function(db){
   return {
     data: db.pools.map(attrs => (
-      { type: 'pool', id: attrs.id, attributes: attrs}
+      { type: 'pools', id: attrs.id, attributes: attrs}
     ))
   };
 });
@@ -39,7 +52,7 @@ this.get('/pools', function(db){
 this.get('/servers', function(db){
   return {
     data: db.servers.map(attrs => (
-      { type: 'server', id: attrs.id, attributes: attrs}
+      { type: 'servers', id: attrs.id, attributes: attrs}
     ))
   };
 });

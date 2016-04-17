@@ -2,3 +2,11 @@
 @import url('info-box.css');
 @import url('navbar.css');
 @import url('sidemenu.css');
+
+body > .ember-view, .ember-app, #wrapper {
+    height: 94vh;
+}
+
+#page-content-wrapper {
+    min-height: 94vh;
+}
