@@ -14,6 +14,8 @@ Router.map(function() {
   this.route('monitors');
   this.route('pools');
   this.route('settings');
+  this.route('login');
+  this.route('susetting');
 });
 
 export default Router;

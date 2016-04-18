@@ -1,6 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
+
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
@@ -16,6 +17,7 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     {{#if session.isAuthenticated}}
       <ul class="nav navbar-nav navbar-right">
         <li>
           <a href="">
@@ -26,11 +28,12 @@
         {{#bs-dropdown tagName="li"}}
         {{#bs-dropdown-toggle}}Dropdown <span class="caret"></span>{{/bs-dropdown-toggle}}
         {{#bs-dropdown-menu}}
-          <li>{{#link-to "index"}}Something{{/link-to}}</li>
-          <li>{{#link-to "index"}}Something different{{/link-to}}</li>
+          <li>{{#link-to "dashboard"}}Something{{/link-to}}</li>
+          <li {{action 'invalidateSession'}} >{{#link-to "login"}}Logout {{/link-to}}</li>
         {{/bs-dropdown-menu}}
       {{/bs-dropdown}}
       </ul>
+     {{/if}}
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
@@ -40,6 +43,7 @@
 
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
+          {{#if session.isAuthenticated}}
             <ul class="sidebar-nav">
               {{#link-to 'dashboard' activeClass="selected" tagName="li"}}
                     <a href=""><span class="glyphicon glyphicon-dashboard"></span>Dashboard</a>
@@ -62,16 +66,26 @@
               {{#link-to 'pools' activeClass="selected" tagName="li"}}
                     <a href=""><span class="glyphicon glyphicon-tags"></span>Pools</a>
               {{/link-to}}
+              {{#if session.data.suPermision}}
+                {{#link-to 'susetting' activeClass="selected" tagName="li"}}
+                      <a href=""><span class="glyphicon glyphicon-cog"></span>Admin Settings</a>
+                {{/link-to}}
+              {{/if}}
               {{#link-to 'settings' activeClass="selected" tagName="li"}}
                     <a href=""><span class="glyphicon glyphicon-cog"></span>Settings</a>
               {{/link-to}}
             </ul>
+          {{/if}}
         </div>
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
         <div id="page-content-wrapper" style="background-color: #ededed; min-height:1024px;">
-            {{outlet}}
+            {{#if session.isAuthenticated}}
+              {{outlet}}
+              {{else}}
+                {{login-page}}
+            {{/if}}
         </div>
         <!-- /#page-content-wrapper -->
 
