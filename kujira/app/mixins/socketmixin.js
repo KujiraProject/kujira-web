@@ -5,14 +5,28 @@ export default Ember.Mixin.create({
 
   graphType: 'room_iops',
 
+  dataHandler: function(data) {
+    console.log(data);
+  },
+
   onInit: function() {
-    var handler = function(data) {
-      console.log(data);
-    };
-    this.get('serv').joinGraph(this.get('graphType'), handler);
+    console.log('mixin init');
   }.on('init'),
 
-  onDestroy: function() {
+  registerToService: function() {
+    this.get('serv').on(this.get('graphType'), this.dataHandler);
+  },
+
+  join: function() {
+    this.get('serv').joinGraph(this.get('graphType'));
+  },
+
+  close: function() {
     this.get('serv').closeGraph(this.get('graphType'));
-  }.on('willDestroy')
+  }
+
+  onDestroy: function() {
+    this.get('serv').off(this.get('graphType'));
+  }.on('willDestroy'),
+
 });
