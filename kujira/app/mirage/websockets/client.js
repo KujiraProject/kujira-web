@@ -1,5 +1,3 @@
-
-
 var wsClient = {
   socket: null,
   connect: function() {
