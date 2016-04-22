@@ -1,0 +1,12 @@
+<a style="cursor: pointer;">
+    CLUSTER HEALTH:
+    <span class="{{cluster.health}} glyphicon glyphicon-heart-empty"></span>
+</a>
+
+{{#tooltip-on-parent typeClass='cluster-status' showOn='click' hideOn='focus'}}
+    <p><strong>Cluster name</strong>: <span class="blue">{{cluster.name}}</span></p>
+    <p><strong>Cluster health</strong>: <span class="red">{{cluster.health}}</span></p>
+    <p><strong>Details</strong>:</p>
+    <p>32 stale+active+undersized+degraded</p>
+    <p>32 stale+active+remapped</p>
+{{/tooltip-on-parent}}

@@ -17,12 +17,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li>
-          <a class={{model.health}} href="">
-            CLUSTER HEALTH
-            <span class="glyphicon glyphicon-option-vertical"></span>
-          </a>
-        </li>
+        {{kujira.cluster-status cluster=model}}
         {{#bs-dropdown tagName="li"}}
         {{#bs-dropdown-toggle}}Dropdown <span class="caret"></span>{{/bs-dropdown-toggle}}
         {{#bs-dropdown-menu}}
