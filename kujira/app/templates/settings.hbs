@@ -14,8 +14,18 @@
           <tr>
             <td> {{user.id}} </td>
             <td> {{user.name}} </td>
-            <td> {{user.userType}} </td>
-            <td><button type="button" class="btn btn-default"> save </button></td>
+            <td>
+              Now: <b>{{user.userType}}</b>
+              <select class="form-control" id="userTypeSelection">
+                      <option value="">Select new type</option>
+                      <option value="superuser">superuser</option>
+                      <option value="user">user</option>
+                      <option value="observer">observer</option>
+              </select>
+
+               </td>
+            <td align="center"><button type="button" class="btn btn-default"
+              {{action "save" user}} > save </button></td>
           </tr>
       {{/each}}
   </tbody>
