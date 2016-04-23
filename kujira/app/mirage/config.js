@@ -44,6 +44,14 @@ this.get('/servers', function(db){
   };
 });
 
+this.get('/users', function(db){
+  return {
+    data: db.users.map(attrs => (
+      { type: 'users', id: attrs.id, attributes: attrs}
+    ))
+  };
+});
+
   // These comments are here to help you get started. Feel free to delete them.
 
   /*
