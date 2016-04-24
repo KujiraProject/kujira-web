@@ -4,7 +4,7 @@ export default function() {
 
 this.namespace = config.APP.NAMESPACE;
 
-this.get('/osds', function(db/*, request*/){
+this.get('/osds', function(db, request){
   return {
     data: db.osds.map(attrs => (
       { type: 'osds', id: attrs.id, attributes: attrs}
@@ -50,6 +50,21 @@ this.get('/users', function(db){
       { type: 'users', id: attrs.id, attributes: attrs}
     ))
   };
+});
+
+this.patch('/users/:id', function(db, request) {
+  var id = parseInt(request.params.id);
+  var attrs = JSON.parse(request.requestBody).data.attributes;
+
+  db.users.update(id, {role: attrs.role});
+
+  return {
+    data: {
+      type: 'users',
+      id: id,
+      attributes: db.users.find(id)
+    }
+  }
 });
 
   // These comments are here to help you get started. Feel free to delete them.

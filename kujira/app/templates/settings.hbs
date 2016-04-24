@@ -5,7 +5,7 @@
     <tr>
       <th>ID</th>
       <th>Name</th>
-      <th>Type</th>
+      <th>Role</th>
       <th>Action</th>
     </tr>
   </thead>
@@ -15,8 +15,8 @@
             <td> {{user.id}} </td>
             <td> {{user.name}} </td>
             <td>
-              Now: <b>{{user.userType}}</b>
-              <select class="form-control" id="userTypeSelection">
+              Now: <b>{{user.role}}</b>
+              <select class="form-control" id="user{{user.id}}RoleSelection">
                       <option value="">Select new type</option>
                       <option value="superuser">superuser</option>
                       <option value="user">user</option>
