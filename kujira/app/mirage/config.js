@@ -4,7 +4,7 @@ export default function() {
 
 this.namespace = config.APP.NAMESPACE;
 
-this.get('/osds', function(db, request){
+this.get('/osds', function(db){
   return {
     data: db.osds.map(attrs => (
       { type: 'osds', id: attrs.id, attributes: attrs}
@@ -64,7 +64,7 @@ this.patch('/users/:id', function(db, request) {
       id: id,
       attributes: db.users.find(id)
     }
-  }
+  };
 });
 
   // These comments are here to help you get started. Feel free to delete them.

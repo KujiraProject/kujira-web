@@ -4,9 +4,9 @@ export default Ember.Controller.extend({
   actions: {
     save(user) {
       var allRoles = ["superuser", "user", "observer"];
-      var role = $( "#user"+user.id+"RoleSelection" ).val();
-      var roleFound = $.inArray(role, allRoles);
-      
+      var role = Ember.$( "#user"+user.id+"RoleSelection" ).val();
+      var roleFound = Ember.$.inArray(role, allRoles);
+
       if(roleFound > -1) {
       user.set('role', role);
       user.save();
