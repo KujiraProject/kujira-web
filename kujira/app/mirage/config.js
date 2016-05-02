@@ -56,7 +56,13 @@ this.get('/servers', function(db){
     ))
   };
 });
-
+this.get('/charts', function(db){
+  return {
+    data: db.charts.map(attrs => (
+      { type: 'charts', id: attrs.id, attributes: attrs}
+    ))
+  };
+});
   // These comments are here to help you get started. Feel free to delete them.
 
   /*
