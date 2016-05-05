@@ -1,13 +1,9 @@
-import config from '../config/environment';
 import wsClient from './websockets/client';
 
 export default function() {
     wsClient.connect();
-    console.log(wsClient.socket);
-    var graphData = {X: "2", Y: "3"};
-    var eventData = {eventType: 'OSDAdded', id: 1, message: 'message'};
     setInterval(function() {
-        wsClient.send(graphData, eventData);
+        wsClient.send('getEventData', 'getGraphData');
   }, 5000);
 
 this.namespace = config.APP.NAMESPACE;
