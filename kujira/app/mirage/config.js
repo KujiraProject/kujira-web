@@ -43,6 +43,24 @@ this.get('/servers', function(db){
     ))
   };
 });
+this.get('/servers/:id', function(db, request){
+    var id = request.params.id;
+  return {
+      data: {
+          type: 'servers',
+          id: id,
+          attributes: db.servers.find(id)
+      }
+  };
+});
+this.get('/discs', function(db, request){
+    // var id = request.params.id;
+  return {
+    data: db.discs.where({server: request.queryParams.server}).map(attrs => (
+      { type: 'disc', id: attrs.id, attributes: attrs}
+    ))
+  };
+});
 
   // These comments are here to help you get started. Feel free to delete them.
 

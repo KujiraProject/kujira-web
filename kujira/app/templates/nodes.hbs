@@ -3,10 +3,9 @@
 <table class="table table-hover table-bordered">
   <thead>
     <tr>
-      <th>ID</th>
+      <th>Hostname</th>
       <th>Managed</th>
       <th>Last Contact</th>
-      <th>Hostname</th>
       <th>Boot Time</th>
       <th>Ceph Version</th>
     </tr>
@@ -14,10 +13,11 @@
   <tbody>
       {{#each model as |server|}}
           <tr>
-            <td> {{server.id}} </td>
+            <td>
+                {{#link-to "node" server.hostname}}{{server.hostname}}{{/link-to}}
+            </td>
             <td> {{server.managed}} </td>
             <td> {{server.lastContact}} </td>
-            <td> {{server.hostname}} </td>
             <td> {{server.bootTime}} </td>
             <td> {{server.cephVersion}} </td>
           </tr>
