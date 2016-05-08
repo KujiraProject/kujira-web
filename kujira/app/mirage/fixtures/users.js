@@ -6,22 +6,22 @@ export default [
   },
   {
     "id": 1,
-    "name": "user1",
-    "role": "user"
+    "name": "admin1",
+    "role": "admin"
   },
   {
     "id": 2,
-    "name": "user2",
-    "role": "user"
+    "name": "admin2",
+    "role": "admin"
   },
   {
     "id": 3,
-    "name": "observer1",
-    "role": "observer"
+    "name": "guest1",
+    "role": "guest"
   },
   {
     "id": 4,
-    "name": "observer2",
-    "role": "observer"
+    "name": "guest2",
+    "role": "guest"
   }
 ];
