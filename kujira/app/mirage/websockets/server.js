@@ -12,10 +12,16 @@ http.listen(8080, function() {
 });
 
 var rooms = {
-  'Diagram1': [
+  'LoggedIn': [
 
   ],
-  'LoggedIn': [
+  'Graph1': [
+
+  ],
+  'Graph2': [
+
+  ],
+  'Graph3': [
 
   ]
 };
@@ -26,6 +32,8 @@ io.on('connection', function(socket) {
   socket.on('disconnect', function() {
     console.log('user disconnected');
   });
+
+
 
   socket.on('join', function(roomName) {
     rooms[roomName].push(socket.id);
@@ -38,42 +46,25 @@ io.on('connection', function(socket) {
     socket.leave('roomName');
   });
 
-  socket.on('eNotification', function(data) {
-    console.log(data);
-    console.log('passing eventData to users in room LoggedIn');
-
-    io.to('LoggedIn').emit('eventNotification', generateEventData());
+  setInterval(function() {
+    io.to('Graph1').emit(generateEventData());
+    io.to('Graph2').emit(generateEventData());
+    io.to('Graph3').emit(generateEventData());
+  }, 2000);
+  socket.on('mirageEvent', function(event) {
+    io.emit(event.eventType, event.data)
   });
 
-
-  socket.on('gNotification', function(data) {
-    console.log(data);
-    console.log('passing eventData to users in room Diagram1');
-    io.to('Diagram1').emit('diagram1Notification', generateGraphData());
-  });
 });
 
 function generateGraphData() {
-  var graphEvents = {};
+  var graphEvents = [];
 
-  for (var x = 0; x < 100; x++) {
+  for (var x = 0; x < 10; x++) {
     graphEvents[x] = {
       X: x * Math.random(),
       Y: (x + 2) * Math.random()
     };
   }
   return graphEvents;
-};
-
-function generateEventData() {
-  var notifyEvents = {};
-
-  for (var x = 0; x < 100; x++) {
-    notifyEvents[x] = {
-      eventType: 'OSDAdded',
-      id: x,
-      message: 'message' + x
-    };
-  }
-  return notifyEvents;
 };
