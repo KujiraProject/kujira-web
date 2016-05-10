@@ -2,9 +2,7 @@ import wsClient from './websockets/client';
 
 export default function() {
     wsClient.connect();
-    setInterval(function() {
-        wsClient.send('getEventData', 'getGraphData');
-  }, 5000);
+  wsClient.send('OSD-FAILED', {"osd-id": 1, "message": "osd failure reason"});
 
 this.namespace = config.APP.NAMESPACE;
 
