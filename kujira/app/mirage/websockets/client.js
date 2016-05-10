@@ -8,10 +8,11 @@ var wsClient = {
       console.log('mirage client connected!');
     });
   },
-  send: function(requestEventData, requestGraphData) {
-    this.socket.emit('eNotification', requestEventData);
-    this.socket.emit('gNotification', requestGraphData);
+  send: function(requestEvent, eventData) {
+    this.socket.emit('mirageEvent', {
+      eventType: requestEvent,
+      data: eventData
+    });
   }
-
 };
 export default wsClient;
