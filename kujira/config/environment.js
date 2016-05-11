@@ -33,8 +33,7 @@ module.exports = function(environment) {
   crossOriginWhitelist:[
      'http://localhost:5000'
   ]
-
-  }
+  };
 
 
   ENV['ember-simple-auth-token'] = {
@@ -44,13 +43,13 @@ module.exports = function(environment) {
   tokenPropertyName: 'token',
   /*authorizationPrefix: 'Bearer ',
   AuthorizationHeaderName: 'Authorization',
-  headers: {},*/
+  headers: {},
   refreshAccessTokens: true,
   serverTokenRefreshEndpoint: '/api/token-refresh/',
   tokenExpireName: 'exp',
-   timeFactor: 1,
-   refreshLeeway: 300 // Refresh the token 5 minutes (300s) before it expires.//*/
-}
+  timeFactor: 1,
+  refreshLeeway: 300 // Refresh the token 5 minutes (300s) before it expires.//*/
+};
 
   if (environment === 'development') {
   // ENV.APP.LOG_RESOLVER = true;
@@ -61,7 +60,7 @@ module.exports = function(environment) {
   //ENV.APP.API_HOST = "127.0.0.1:5000";
   ENV['ember-cli-mirage'] = {
     enabled: false
-    }
+  };
 
   }
 

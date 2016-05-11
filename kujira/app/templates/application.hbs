@@ -66,7 +66,8 @@
               {{#link-to 'pools' activeClass="selected" tagName="li"}}
                     <a href=""><span class="glyphicon glyphicon-tags"></span>Pools</a>
               {{/link-to}}
-              {{#if session.data.suPermision}}
+              {{#if session.data.isAdmin}}
+              {{#if session.data.isSuser}}
                 {{#link-to 'susetting' activeClass="selected" tagName="li"}}
                       <a href=""><span class="glyphicon glyphicon-cog"></span>Admin Settings</a>
                 {{/link-to}}
@@ -74,6 +75,7 @@
               {{#link-to 'settings' activeClass="selected" tagName="li"}}
                     <a href=""><span class="glyphicon glyphicon-cog"></span>Settings</a>
               {{/link-to}}
+              {{/if}}
             </ul>
           {{/if}}
         </div>

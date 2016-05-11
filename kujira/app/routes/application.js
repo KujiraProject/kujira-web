@@ -7,9 +7,7 @@ export default Ember.Route.extend(ApplicationRouteMixin,{
     this.transitionTo('dashboard');
   },
   model(){
-    // If the user is already signed in this fetches the current user from the server
-    console.log(' Zalogowal: ' + this.get('session.data.currentUser.email'));
-    return this.get('session.data.currentUser');
+
   },
 
 });

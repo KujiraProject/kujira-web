@@ -9,9 +9,9 @@ export default ESASession.extend({
   isSuser: false,
 
   setCurrentGroup: function() {
-
-          this.set('data.currentUser.group', this.get('data').authenticated.data[1].id);
-
+          if(this.get('data').authenticated!==undefined) {
+            this.set('data.currentUser.group', this.get('data').authenticated.data[1].id);
+          }
           if(this.get('data').currentUser.group === "admins") {
             this.set('data.isAdmin', true);
           }
