@@ -17,12 +17,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li>
-          <a href="">
-            <span class="glyphicon glyphicon-heart"></span>
-            <span class="badge">42</span>
-          </a>
-        </li>
+        {{kujira.cluster-status cluster=model}}
         {{#bs-dropdown tagName="li"}}
         {{#bs-dropdown-toggle}}Dropdown <span class="caret"></span>{{/bs-dropdown-toggle}}
         {{#bs-dropdown-menu}}
@@ -70,7 +65,7 @@
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
-        <div id="page-content-wrapper" style="background-color: #ededed; min-height:1024px;">
+        <div id="page-content-wrapper" style="background-color: #ededed;">
             {{outlet}}
         </div>
         <!-- /#page-content-wrapper -->

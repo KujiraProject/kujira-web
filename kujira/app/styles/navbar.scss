@@ -29,15 +29,40 @@
   background: #323232;
 }
 
-.nav > li > a{
+.navbar-right {
+    margin-right: 0px;
+}
+
+.nav > li > a > span{
   color: #c0c0c0 !important;
+  &.ok {
+    color: #00a65a !important;
+  }
+  &.error {
+    color: #dd4b39 !important;
+  }
+  &.warning {
+    color: #f09b22 !important;
+  }
 }
 
 .nav > li > a:hover {
-  color: #f09b22 !important;
+ color: #f09b22 !important;
 }
 
 .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
   color: #f09b22 !important;
   background: #1b1b1b !important;
+}
+
+.tooltip-cluster-status {
+    padding: 10px 10px 10px 10px !important;
+    max-width: 500px;
+    span.blue {
+        color: #00c0ef;
+    }
+    
+    span.red {
+        color: #dd4b39;
+    }
 }
