@@ -37,10 +37,10 @@ module.exports = function(environment) {
 
 
   ENV['ember-simple-auth-token'] = {
-  serverTokenEndpoint: 'http://localhost:5000/authenticate', /*'api/v1/token',*/ //IF YOU WANT TO USE MIRAGE
+  serverTokenEndpoint: 'http://localhost:5000/auth/authenticate', /*'api/v1/token',*/ //IF YOU WANT TO USE MIRAGE
   identificationField: 'username',
   passwordField: 'password',
-  tokenPropertyName: 'token',
+  tokenPropertyName: 'tokens',
   /*authorizationPrefix: 'Bearer ',
   AuthorizationHeaderName: 'Authorization',
   headers: {},
