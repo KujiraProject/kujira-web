@@ -24,7 +24,7 @@ module.exports = function(environment) {
 
   ENV['ember-simple-auth'] = {
   //authenticationRoute: 'login',
-  baseURL: '/kujira',
+  baseURL: '/kujira/',
   routeAfterAuthentication: 'dashboard',
   routeAfterInvalidation: 'login',
   routeIfAlreadyAuthenticated: 'dashboard',
