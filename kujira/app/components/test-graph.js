@@ -2,16 +2,12 @@ import Ember from 'ember';
 import Mixin from 'kujira/mixins/socketmixin';
 
 export default Ember.Component.extend(Mixin, {
-    dataHandler: function(data) {
-      console.log('zmieniona funkcja dataHandler');
-      console.log(data);
-    },
 
     onInit: function() {
       this._super();
-      this.set('graphType', 'speedDataGraph');
-      console.log('component init');
-      this.registerToService();
+      this.setRoom('LoggedIn');
+      this.join();
+      this.setRoom('Graph1');
       this.join();
     }.on('init'),
 

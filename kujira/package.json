@@ -4,6 +4,7 @@
   "description": "Small description for kujira goes here",
   "private": true,
   "directories": {
+    "doc": "doc",
     "test": "tests"
   },
   "scripts": {
@@ -11,6 +12,7 @@
     "start": "ember server",
     "test": "ember test"
   },
+  "repository": "",
   "engines": {
     "node": ">= 0.10.0"
   },
@@ -42,8 +44,7 @@
     "loader.js": "^4.0.0"
   },
   "dependencies": {
-    "express": "~4.13.4",
-    "socket.io": "~1.4.5"
-  },
-  "main": "ember-cli-build.js"
+    "socket.io": "^1.4.6",
+    "socket.io-client": "^1.4.6"
+  }
 }

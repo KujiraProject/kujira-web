@@ -32,6 +32,7 @@ module.exports = function(defaults) {
   // along with the exports of each module as its value.
   app.import('vendor/fonts/OpenSans-Regular.ttf', {destDir: 'fonts'});
   app.import('bower_components/d3/d3.js');
+  app.import('bower_components/socket.io-client/socket.io.js');
 
   return app.toTree();
 };

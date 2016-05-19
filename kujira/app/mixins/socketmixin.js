@@ -1,32 +1,38 @@
 import Ember from 'ember';
 
 export default Ember.Mixin.create({
-  serv: Ember.inject.service('event-handler-service'),
+    serv: Ember.inject.service('event-handler-service'),
 
-  graphType: 'room_iops',
+    graphType: 'room_iops',
 
-  dataHandler: function(data) {
-    console.log(data);
-  },
+    setRoom: function(roomName) {
+      this.set('graphType', roomName);
+    },
 
-  onInit: function() {
-    console.log('mixin init');
-  }.on('init'),
+    onInit: function() {
+      this.get('serv').on(this.get('graphType'), this.graphNotification, this);
+      this.get('serv').on('eventNotification', this.eventNotification, this);
+    }.on('init'),
 
-  registerToService: function() {
-    this.get('serv').on(this.get('graphType'), this.dataHandler);
-  },
+    graphNotification: function(message) {
+      console.log(message.message);
+    },
 
-  join: function() {
-    this.get('serv').joinGraph(this.get('graphType'));
-  },
+    eventNotification: function(message) {
+      console.log(message.message);
+    },
 
-  close: function() {
-    this.get('serv').closeGraph(this.get('graphType'));
-  }
+    join: function() {
+      var room = new Object();
+      room.room = this.get('graphType');
+      this.get('serv').joinGraph(room);
+    },
 
-  onDestroy: function() {
-    this.get('serv').off(this.get('graphType'));
-  }.on('willDestroy'),
+    close: function() {
+      this.get('serv').closeGraph(this.get('graphType'));
+    },
 
+    onDestroy: function() {
+      this.get('serv').off(this.get('graphType'));
+    }.on('willDestroy')
 });
