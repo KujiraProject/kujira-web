@@ -4,13 +4,18 @@ node_js:
 
 sudo: false
 
+cache:
+  directories:
+    - kujira/node_modules
+    - kujira/bower_modules
+
 before_install:
+  - cd kujira
   - npm config set spin false
   - npm install -g npm@^2
   - npm install -g bower
 
 install:
-  - cd kujira
   - npm install -g phantomjs-prebuilt
   - npm install
   - bower install
