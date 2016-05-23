@@ -10,3 +10,15 @@ body > .ember-view, .ember-app, #wrapper {
 #page-content-wrapper {
     min-height: 94vh;
 }
+
+.kujira-node-details {
+    table {
+        background-color: #f5f5f5;
+    }
+}
+
+table.kujira-vertical {
+    tr td:first-child {
+        font-weight: bold;
+    }
+}

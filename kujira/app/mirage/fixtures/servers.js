@@ -1,6 +1,6 @@
 export default [
   {
-    "id": 0,
+    "id": "figment002",
     "managed": true,
     "last-contact": "2014-11-06T21:15:15.155201+00:00",
     "hostname": "figment002",
@@ -12,36 +12,12 @@ export default [
         "type": "mon",
         "id": "figment002",
         "fsid": "dce20d46-f010-4883-988c-4a6d8bd15793"
-      },
-      {
-        "running": true,
-        "type": "osd",
-        "id": "8",
-        "fsid": "dce20d46-f010-4883-988c-4a6d8bd15793"
-      },
-      {
-        "running": true,
-        "type": "osd",
-        "id": "9",
-        "fsid": "dce20d46-f010-4883-988c-4a6d8bd15793"
-      },
-      {
-        "running": true,
-        "type": "osd",
-        "id": "11",
-        "fsid": "dce20d46-f010-4883-988c-4a6d8bd15793"
-      },
-      {
-        "running": true,
-        "type": "osd",
-        "id": "10",
-        "fsid": "dce20d46-f010-4883-988c-4a6d8bd15793"
       }
     ],
     "ceph-version": "0.67.8-simulator"
   },
   {
-    "id": 1,
+    "id": "figment000",
     "managed": true,
     "last-contact": "2014-11-06T21:15:15.156841+00:00",
     "hostname": "figment000",
@@ -82,7 +58,7 @@ export default [
     "ceph-version": "0.67.8-simulator"
   },
   {
-    "id": 2,
+    "id": "figment001",
     "managed": true,
     "last-contact": "2014-11-06T21:15:15.115350+00:00",
     "hostname": "figment001",
