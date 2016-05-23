@@ -10,7 +10,8 @@
     "pretender": "~0.10.1",
     "lodash": "~3.7.0",
     "Faker": "~3.0.0",
-    "d3": "^3.5.16"
+    "d3": "^3.5.16",
+    "socket.io-client": ">1.4.4"
   },
   "resolutions": {
     "ember": "2.3.0"
