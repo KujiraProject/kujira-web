@@ -1,5 +1,6 @@
 import Ember from 'ember';
 //import ENV from 'kujira/config/enviroment';
+/* global io */
 
 export default Ember.Service.extend(Ember.Evented, {
     socket: '',
