@@ -2,26 +2,26 @@ export default [
   {
     "id": 0,
     "name": "superuser1",
-    "role": "superuser"
+    "role": "superusers"
   },
   {
     "id": 1,
     "name": "admin1",
-    "role": "admin"
+    "role": "admins"
   },
   {
     "id": 2,
     "name": "admin2",
-    "role": "admin"
+    "role": "admins"
   },
   {
     "id": 3,
     "name": "guest1",
-    "role": "guest"
+    "role": "guests"
   },
   {
     "id": 4,
     "name": "guest2",
-    "role": "guest"
+    "role": "guests"
   }
 ];
