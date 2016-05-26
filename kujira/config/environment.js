@@ -26,6 +26,21 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.APP.API_HOST = "";
+    
+  // ENV['ember-cli-mirage'] = {
+  //   enabled: false
+  // }
+   
+  }
+  
+  if (environment === 'dev-api') {
+    // ENV.APP.LOG_RESOLVER = true;
+    // ENV.APP.LOG_ACTIVE_GENERATION = true;
+    // ENV.APP.LOG_TRANSITIONS = true;
+    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
+    // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.APP.API_HOST = "http://192.168.0.103:8080";
   }
 
   if (environment === 'test') {
