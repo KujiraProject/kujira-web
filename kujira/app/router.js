@@ -14,7 +14,9 @@ Router.map(function() {
   this.route('placement-groups');
   this.route('monitors');
   this.route('pools');
-  this.route('settings');
+  this.route('settings', function() {
+    this.route('users');
+  });
 });
 
 export default Router;
