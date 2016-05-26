@@ -5,7 +5,6 @@ export default Ember.Route.extend({
       return this.store.findRecord('cluster', 0);
   },
   redirect: function(){
-    // this.transitionTo('dashboard');
-    
+    //this.transitionTo('dashboard');
   }
 });
