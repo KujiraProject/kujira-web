@@ -7,7 +7,7 @@ app.get('/kujira', function(req, res) {
   res.sendfile('index.html');
 });
 
-http.listen(8080, function() {
+http.listen(7000, function() {
   console.log('server is running...');
 });
 
@@ -33,38 +33,40 @@ io.on('connection', function(socket) {
     console.log('user disconnected');
   });
 
-
-
   socket.on('join', function(roomName) {
-    rooms[roomName].push(socket.id);
-    socket.join(roomName);
+    console.log('User with id   ' + socket.id + '     joined the room   ' + roomName.room);
+    rooms[roomName.room].push(socket.id);
+    socket.join(roomName.room);
+  });
+
+  socket.on('mirageEvent', function(event) {
+    io.emit(event.eventType, event.data);
   });
 
   socket.on('leave', function(roomName) {
+    console.log('User with id   ' + socket.id + '     left room   ' + roomName);
     var toRemove = rooms[roomName].indexOf(socket.id);
     rooms[roomName].splice(toRemove, 1);
-    socket.leave('roomName');
+    socket.leave(roomName);
   });
 
   setInterval(function() {
-    io.to('Graph1').emit(generateEventData());
-    io.to('Graph2').emit(generateEventData());
-    io.to('Graph3').emit(generateEventData());
-  }, 2000);
-  socket.on('mirageEvent', function(event) {
-    io.emit(event.eventType, event.data)
-  });
+    io.to('Graph1').emit('graph notification', generateGraphData('Graph1'));
+    io.to('Graph2').emit('graph notification', generateGraphData('Graph2'));
+    io.to('Graph3').emit('graph notofication', generateGraphData('Graph3'));
+  }, Math.floor((Math.random() * 10000) + 5000));
+
+
 
 });
 
-function generateGraphData() {
-  var graphEvents = [];
-
-  for (var x = 0; x < 10; x++) {
-    graphEvents[x] = {
-      X: x * Math.random(),
-      Y: (x + 2) * Math.random()
-    };
-  }
-  return graphEvents;
+function generateGraphData(roomName) {
+  var graphEvent = {
+    Room: roomName,
+    Data: {
+      X: 2 * Math.random(),
+      Y: (5 + 2) * Math.random()
+    }
+  };
+  return graphEvent;
 };
