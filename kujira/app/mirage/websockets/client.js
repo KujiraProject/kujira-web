@@ -1,7 +1,7 @@
 var wsClient = {
   socket: null,
-  connect: function() {
-    this.socket = io('http://localhost:8080/', {
+  connect: function(port) {
+    this.socket = io('http://localhost:'+port+'/', {
       transports: ['websocket']
     });
     this.socket.on('connect', function() {
@@ -11,7 +11,7 @@ var wsClient = {
   send: function(requestEvent, eventData) {
     this.socket.emit('mirageEvent', {
       eventType: requestEvent,
-      data: eventData
+      'data': eventData
     });
   }
 };
