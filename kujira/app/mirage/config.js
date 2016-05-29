@@ -2,7 +2,7 @@ import wsClient from './websockets/client';
 import config from '../config/environment';
 
 export default function() {
-    wsClient.connect();
+    wsClient.connect(config.port);
   wsClient.send('OSD-FAILED', {"osd-id": 1, "message": "osd failure reason"});
 
 this.namespace = config.APP.NAMESPACE;
