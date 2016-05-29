@@ -1,4 +1,5 @@
 import wsClient from './websockets/client';
+import config from '../config/environment';
 
 export default function() {
     wsClient.connect();
