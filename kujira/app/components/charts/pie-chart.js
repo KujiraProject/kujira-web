@@ -4,16 +4,17 @@ import {
 } from './chartsCommonContent';
 
 export default Ember.Component.extend({
-    height: null,
-    width: null,
+    height: 400,
+    width: 500,
     chartDescription: null,
     dataType: null,
     refreshingInterval: null,
 
     willDestroyElement() {
-        clearInterval(this.get('refreshingInterval'));
+        if (this.get('refreshingInterval') !== 'undefined') {
+            clearInterval(this.get('refreshingInterval'));
+        }
     },
-
     didRender() {
 
         var dataType = this.get('dataType'),
