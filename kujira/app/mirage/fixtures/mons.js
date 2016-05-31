@@ -1,26 +1,26 @@
 export default [
   {
-    "id": 0,
-    "addr": "12345",
+    "id": "node0",
+    "addr": "192.168.200.11:6789/0",
     "in-quorum": true,
     "name": "figment000",
     "rank": 0,
-    "server": "figment000.cluster0.com"
+    "server": "node0"
   },
   {
-    "id": 1,
-    "addr": "23456",
+    "id": "node1",
+    "addr": "192.168.200.11:6789/0",
     "in-quorum": true,
     "name": "figment001",
     "rank": 1,
-    "server": "figment001.cluster0.com"
+    "server": "node1"
   },
   {
-    "id": 2,
-    "addr": "34567",
+    "id": "node2",
+    "addr": "192.168.200.11:6789/0",
     "in-quorum": true,
     "name": "figment002",
     "rank": 2,
-    "server": "figment002.cluster0.com"
+    "server": "node2"
   }
 ];
