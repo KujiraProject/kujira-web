@@ -3,7 +3,7 @@ import config from '../config/environment';
 
 export default function() {
     wsClient.connect(config.port);
-  wsClient.send('OSD-FAILED', {"osd-id": 1, "message": "osd failure reason"});
+  wsClient.send('event notification', {"osd-id": 1, "message": "osd failure reason"});
 
 this.namespace = config.APP.NAMESPACE;
 
