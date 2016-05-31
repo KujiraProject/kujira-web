@@ -4,17 +4,12 @@ export default function() {
 
 this.namespace = config.APP.NAMESPACE;
 
-this.get('/clusters/:id', function(db, request){
-  let id = request.params.id;
-
+this.get('/clusters', function(db){ 
   return {
-    data: {
-      type: 'clusters',
-      id: id,
-      attributes: db.cluster.find(id)
-    }
+    data: db.cluster.map(attrs => (
+      { type: 'clusters', id: attrs.id, attributes: attrs}
+    ))
   };
-
 });
 
 this.get('/osds', function(db){
