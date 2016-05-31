@@ -6,7 +6,7 @@ this.namespace = config.APP.NAMESPACE;
 
 this.get('/clusters', function(db){ 
   return {
-    data: db.cluster.map(attrs => (
+    data: db.clusters.map(attrs => (
       { type: 'clusters', id: attrs.id, attributes: attrs}
     ))
   };
@@ -47,10 +47,11 @@ this.get('/pools', function(db){
 this.get('/servers', function(db){
   return {
     data: db.servers.map(attrs => (
-      { type: 'servers', id: attrs.id, attributes: attrs}
+      { type: 'servers', id: attrs.id, attributes: attrs, relationships: attrs.relationships}
     ))
   };
 });
+
 this.get('/servers/:id', function(db, request){
     var id = request.params.id;
   return {
