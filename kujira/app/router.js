@@ -12,7 +12,6 @@ Router.map(function() {
   this.route('nodes');
   this.route('node', {path: 'node/:hostname'});
   this.route('osds');
-  this.route('placement-groups');
   this.route('monitors');
   this.route('pools');
   this.route('settings', function() {
