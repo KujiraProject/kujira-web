@@ -8,7 +8,6 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('dashboard');
   this.route('clusters');
-  this.route('cluster');
   this.route('nodes');
   this.route('node', {path: 'node/:hostname'});
   this.route('osds');
