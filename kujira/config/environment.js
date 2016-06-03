@@ -5,6 +5,7 @@ module.exports = function(environment) {
     modulePrefix: 'kujira',
     environment: environment,
     baseURL: '/kujira',
+    port: 7000,
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
