@@ -10,9 +10,9 @@ app.get('/kujira', function(req, res) {
 http.listen(7000, function() {
   console.log('server is running...');
 });
-
+var eventFromMirage;
 var rooms = {
-  'LoggedIn': [
+  'Events': [
 
   ],
   'Graph1': [
@@ -40,7 +40,8 @@ io.on('connection', function(socket) {
   });
 
   socket.on('mirageEvent', function(event) {
-    io.emit(event.eventType, event.data);
+    eventFromMirage = event;
+    io.to('Events').emit(event.eventType, event.data);
   });
 
   socket.on('leave', function(roomName) {
@@ -51,6 +52,7 @@ io.on('connection', function(socket) {
   });
 
   setInterval(function() {
+    io.to('Events').emit(eventFromMirage.eventType, eventFromMirage.data);
     io.to('Graph1').emit('graph notification', generateGraphData('Graph1'));
     io.to('Graph2').emit('graph notification', generateGraphData('Graph2'));
     io.to('Graph3').emit('graph notofication', generateGraphData('Graph3'));
