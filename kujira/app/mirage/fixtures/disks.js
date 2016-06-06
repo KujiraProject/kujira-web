@@ -1,5 +1,5 @@
 export default [{
-  "name": "disc.x", //1
+  "name": "disk.x", //1
   "osd-status": "OUT", // 1
   "osd-weight": "1,0", // 1
   "server": "figment001", // 1
@@ -11,7 +11,7 @@ export default [{
   "journal-device-path": "/tmp/234", // 2
   "journal-device-status": "OK" // 2
 }, {
-  "name": "disc.1", //1
+  "name": "disk.1", //1
   "osd-status": "OUT", // 1
   "osd-weight": "1,0", // 1
   "server": "figment001", // 1
@@ -23,7 +23,7 @@ export default [{
   "journal-device-path": "/tmp/234", // 2
   "journal-device-status": "OK" // 2
 }, {
-  "name": "disc.2",
+  "name": "disk.2",
   "osd-status": "IN",
   "osd-weight": "1,0",
   "server": "figment002",
@@ -35,7 +35,7 @@ export default [{
   "journal-device-path": "/tmp/234",
   "journal-device-status": "OK"
 }, {
-  "name": "disc.3", //1
+  "name": "disk.3", //1
   "osd-status": "OUT", // 1
   "osd-weight": "1,0", // 1
   "server": "figment001", // 1

@@ -4,7 +4,7 @@ export default function() {
 
 this.namespace = config.APP.NAMESPACE;
 
-this.get('/clusters', function(db){ 
+this.get('/clusters', function(db){
   return {
     data: db.clusters.map(attrs => (
       { type: 'clusters', id: attrs.id, attributes: attrs}
@@ -62,11 +62,11 @@ this.get('/servers/:id', function(db, request){
       }
   };
 });
-this.get('/discs', function(db, request){
+this.get('/disks', function(db, request){
     // var id = request.params.id;
   return {
-    data: db.discs.where({server: request.queryParams.server}).map(attrs => (
-      { type: 'disc', id: attrs.id, attributes: attrs}
+    data: db.disks.where({server: request.queryParams.server}).map(attrs => (
+      { type: 'disk', id: attrs.id, attributes: attrs}
     ))
   };
 });

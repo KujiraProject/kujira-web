@@ -4,10 +4,10 @@ export default Ember.Controller.extend({
     openModal: false,
     diskInModal: null,
     actions: {
-        openDialog: function (disc) {
-            console.log(disc);
+        openDialog: function (disk) {
+            console.log(disk);
             this.set('openModal', true);
-            this.set('diskInModal', disc);
+            this.set('diskInModal', disk);
         }
     }
 });

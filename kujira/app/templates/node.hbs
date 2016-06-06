@@ -52,29 +52,29 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{#each model.discs as |disc|}}
+                        {{#each model.disks as |disk|}}
                         <tr>
-                            <td> {{disc.name}} </td>
-                            <td> {{disc.osdStatus}} </td>
-                            <td> {{disc.osdWeight}} </td>
-                            <td> {{disc.server}} </td>
-                            <td> {{disc.dataDeviceStatus}} </td>
-                            <td> {{disc.dataDeviceCapacityMB}} </td>
+                            <td> {{disk.name}} </td>
+                            <td> {{disk.osdStatus}} </td>
+                            <td> {{disk.osdWeight}} </td>
+                            <td> {{disk.server}} </td>
+                            <td> {{disk.dataDeviceStatus}} </td>
+                            <td> {{disk.dataDeviceCapacityMB}} </td>
                             <td class="text-center">
-                                <button type="button" class="btn btn-default" {{action "openDialog" disc}}>
+                                <button type="button" class="btn btn-default" {{action "openDialog" disk}}>
                                     <i class="glyphicon glyphicon-modal-window"></i>
                                     Details
                                 </button>
                             </td>
                             <td class="text-center">
-                                {{#if disc.inOSD }}
+                                {{#if disk.inOSD }}
 
-                                <button type="button" class="btn btn-danger" {{action "openDialog" disc}}>
+                                <button type="button" class="btn btn-danger" {{action "openDialog" disk}}>
                                     <i class="glyphicon glyphicon-remove"></i>
                                     Remove OSD
                                 </button>
                                 {{else}}
-                                <button type="button" class="btn btn-success" {{action "openDialog" disc}}>
+                                <button type="button" class="btn btn-success" {{action "openDialog" disk}}>
                                     <i class="glyphicon glyphicon-add"></i>
                                     Add OSD
                                 </button>

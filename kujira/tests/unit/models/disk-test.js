@@ -1,6 +1,6 @@
 import { moduleForModel, test } from 'ember-qunit';
 
-moduleForModel('disc', 'Unit | Model | disc', {
+moduleForModel('disk', 'Unit | Model | disk', {
   // Specify the other units that are required for this test.
   needs: []
 });
