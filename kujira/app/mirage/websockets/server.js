@@ -35,8 +35,12 @@ io.on('connection', function(socket) {
 
   socket.on('join', function(roomName) {
     console.log('User with id   ' + socket.id + '     joined the room   ' + roomName.room);
-    rooms[roomName.room].push(socket.id);
     socket.join(roomName.room);
+    if(roomName.room == 'Events') {
+      io.to(roomName.room).emit(eventFromMirage.eventType, eventFromMirage.data);
+    }
+    rooms[roomName.room].push(socket.id);
+
   });
 
   socket.on('mirageEvent', function(event) {
@@ -52,7 +56,6 @@ io.on('connection', function(socket) {
   });
 
   setInterval(function() {
-    io.to('Events').emit(eventFromMirage.eventType, eventFromMirage.data);
     io.to('Graph1').emit('graph notification', generateGraphData('Graph1'));
     io.to('Graph2').emit('graph notification', generateGraphData('Graph2'));
     io.to('Graph3').emit('graph notofication', generateGraphData('Graph3'));
