@@ -4,30 +4,28 @@ import {
 } from './chartsCommonContent';
 
 export default Ember.Component.extend({
-    height: 400,
-    width: 500,
+    classNames: ['chart'],
+    height: 280,
+    width: 310,
     chartDescription: null,
     dataType: null,
     refreshingInterval: null,
 
     willDestroyElement() {
-        if (this.get('refreshingInterval') !== 'undefined') {
-            clearInterval(this.get('refreshingInterval'));
-        }
+        clearInterval(this.get('refreshingInterval'));
     },
     didRender() {
 
         var dataType = this.get('dataType'),
+            chartProperties = {
+              width: this.get('width'),
+              height: this.get('height'),
+              chartType: 'barChart',
+              chartDescription: this.get('chartDescription')
+            },
             div = this.get('element'),
-            width = this.get('width'),
-            height = this.get('height'),
-            chartDescription = this.get('chartDescription'),
-            refreshPeriod = 5000,
-            chartType = 'barChart',
-            chartData;
+            refreshPeriod = 4000;
 
-        this.set('refreshingInterval', createRefreshingChart(dataType, chartData, div, width, height, chartDescription, refreshPeriod, chartType));
-
+          this.set('refreshingInterval', createRefreshingChart(dataType, div, refreshPeriod, chartProperties));
     }
-
 });

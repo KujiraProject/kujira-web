@@ -3,39 +3,56 @@ export {
     createRefreshingChart
 };
 
-function createRefreshingChart(dataType, chartData, div, width, height, chartDescription, refreshPeriod, chartType) {
-    getDataFromAjaxCall(dataType, chartData, div, width, height, chartDescription, chartType);
+function createRefreshingChart(dataType, div, refreshPeriod, chartProperties) {
+    createChart(dataType, div, chartProperties);
     return setInterval(function() {
-        getDataFromAjaxCall(dataType, chartData, div, width, height, chartDescription, chartType);
+        createChart(dataType, div, chartProperties);
     }, refreshPeriod);
 }
-var getDataFromAjaxCall = function(dataType, chartData, div, width, height, chartDescription, chartType) {
-    Ember.$.ajax({
-        url: '/kujira/api/v1/' + dataType + 'ChartData',
-        async: true,
-        type: 'GET'
-    }).success(function(response) {
-        chartData = response.data;
-        div.innerHTML = "";
-        switch (chartType) {
-            case 'pieChart':
-                drawRoundChart(chartData, div, width, height, chartDescription, chartType);
-                break;
-            case 'donutChart':
-                drawRoundChart(chartData, div, width, height, chartDescription, chartType);
-                break;
-            case 'barChart':
-                drawBarChart(chartData, div, width, height, chartDescription, chartType);
-                break;
-            default:
-                console.log('wrong type of chart');
-        }
+
+var createChart = function(dataType, div, chartProperties) {
+    var chartDataPromise = getDataFromAjaxCall(dataType);
+    chartDataPromise.success(function(response) {
+        div.innerHTML = '';
+        div.appendChild(drawChart(response.data, chartProperties));
     });
 };
 
-var drawRoundChart = function(chartData, div, width, height, chartDescription, chartType) {
+var drawChart = function(chartData, chartProperties) {
+    var chart;
+    switch (chartProperties.chartType) {
+        case 'pieChart':
+            chart = drawRoundChart(chartData, chartProperties);
+            break;
+        case 'donutChart':
+            chart = drawRoundChart(chartData, chartProperties);
+            break;
+        case 'barChart':
+            chart = drawBarChart(chartData, chartProperties);
+            break;
+        default:
+            chart = 'Wrong type of chart';
+    }
+    return chart;
+};
+var getDataFromAjaxCall = function(dataType) {
+    var chartDataPromise = Ember.$.ajax({
+        url: '/kujira/api/v1/' + dataType + 'ChartData',
+        async: true,
+        type: 'GET'
+    });
+    return chartDataPromise;
+};
 
-    var r = 0.35 * width,
+var drawRoundChart = function(chartData, chartProperties) {
+
+    var width = chartProperties.width,
+        height = chartProperties.height,
+        chartDescription = chartProperties.chartDescription,
+        chartType = chartProperties.chartType;
+
+    var chartDiv = document.createElement('div'),
+        r = 0.35 * width,
         legendRectSize = 0.04 * width,
         legendSpacing = 0.004 * width,
         parametersNamesArray = [],
@@ -46,7 +63,8 @@ var drawRoundChart = function(chartData, div, width, height, chartDescription, c
     var color = d3.scale.ordinal()
         .range(parametersColorsArray);
 
-    var canvas = d3.select(div)
+
+    var canvas = d3.select(chartDiv)
         .append("svg")
         .attr("width", width)
         .attr("height", height);
@@ -129,11 +147,17 @@ var drawRoundChart = function(chartData, div, width, height, chartDescription, c
             return d;
         });
 
-
+    return chartDiv;
 };
-var drawBarChart = function(chartData, div, width, height, chartDescription, chartType) {
+var drawBarChart = function(chartData, chartProperties) {
 
-    var scaling = 0,
+    var width = chartProperties.width,
+        height = chartProperties.height,
+        chartDescription = chartProperties.chartDescription,
+        chartType = chartProperties.chartType;
+
+    var chartDiv = document.createElement('div'),
+        scaling = 0,
         modif = (0.9 * width) / chartData.length,
         parametersNamesArray = [],
         parametersColorsArray = [],
@@ -171,7 +195,7 @@ var drawBarChart = function(chartData, div, width, height, chartDescription, cha
     var color = d3.scale.ordinal()
         .range(parametersColorsArray);
 
-    var canvas = d3.select(div)
+    var canvas = d3.select(chartDiv)
         .append("svg")
         .attr("width", width)
         .attr("height", height)
@@ -217,7 +241,7 @@ var drawBarChart = function(chartData, div, width, height, chartDescription, cha
         .attr("transform", "translate(" + 0.015 * height + "," + 0.2 * height + ")")
         .text("" + chartDescription + "");
 
-
+    return chartDiv;
 };
 
 var fillArrays = function(parametersNamesArray, parametersColorsArray, parametersValuesArray, chartData, chartType) {
@@ -233,6 +257,7 @@ var fillArrays = function(parametersNamesArray, parametersColorsArray, parameter
             k = 1;
             break;
     }
+
     for (l; l < chartData.length + 1; l++) {
         parametersNamesArray[l] = chartData.get(l - k + '.name');
     }
@@ -240,5 +265,5 @@ var fillArrays = function(parametersNamesArray, parametersColorsArray, parameter
     for (l = 0; l < chartData.length; l++) {
         parametersColorsArray[l] = chartData.get(l + '.color');
         parametersValuesArray[l] = chartData.get(l + '.value');
-    }
-};
+      }
+  };
