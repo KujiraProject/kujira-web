@@ -14,7 +14,11 @@ var createChart = function(dataType, div, chartProperties) {
     var chartDataPromise = getDataFromAjaxCall(dataType);
     chartDataPromise.success(function(response) {
         div.innerHTML = '';
-        div.appendChild(drawChart(response.data, chartProperties));
+        try {
+          div.appendChild(drawChart(response.data, chartProperties));
+        } catch (e) {
+          div.innerHTML = e;
+        }
     });
 };
 
@@ -31,7 +35,7 @@ var drawChart = function(chartData, chartProperties) {
             chart = drawBarChart(chartData, chartProperties);
             break;
         default:
-            chart = 'Wrong type of chart';
+            throw 'Wrong type of chart';
     }
     return chart;
 };
@@ -149,6 +153,7 @@ var drawRoundChart = function(chartData, chartProperties) {
 
     return chartDiv;
 };
+
 var drawBarChart = function(chartData, chartProperties) {
 
     var width = chartProperties.width,
@@ -165,8 +170,8 @@ var drawBarChart = function(chartData, chartProperties) {
         parametersNamesPositionsArray = [];
 
     fillArrays(parametersNamesArray, parametersColorsArray, parametersValuesArray, chartData, chartType);
-    parametersNamesArray[0] = "";
-    parametersNamesPositionsArray[0] = 0;
+    parametersNamesArray.unshift('');
+    parametersNamesPositionsArray.unshift(0);
     for (var i = 1; i < chartData.length + 1; i++) {
         parametersNamesPositionsArray[i] = i * 0.33 * modif + 0.66 * modif * (i - 1);
     }
@@ -197,9 +202,9 @@ var drawBarChart = function(chartData, chartProperties) {
 
     var canvas = d3.select(chartDiv)
         .append("svg")
+        .attr("transform", "translate(0,10)")
         .attr("width", width)
-        .attr("height", height)
-        .append("g");
+        .attr("height", height);
 
     var yAxis = d3.svg.axis()
         .scale(yAxisScale)
@@ -244,26 +249,10 @@ var drawBarChart = function(chartData, chartProperties) {
     return chartDiv;
 };
 
-var fillArrays = function(parametersNamesArray, parametersColorsArray, parametersValuesArray, chartData, chartType) {
-    var l, k;
-    switch (chartType) {
-        case 'pieChart':
-        case 'donutChart':
-            l = 0;
-            k = 0;
-            break;
-        case 'barChart':
-            l = 1;
-            k = 1;
-            break;
-    }
-
-    for (l; l < chartData.length + 1; l++) {
-        parametersNamesArray[l] = chartData.get(l - k + '.name');
-    }
-
-    for (l = 0; l < chartData.length; l++) {
+var fillArrays = function(parametersNamesArray, parametersColorsArray, parametersValuesArray, chartData) {
+    for (var l = 0; l < chartData.length; l++) {
+        parametersNamesArray[l] = chartData.get(l + '.name');
         parametersColorsArray[l] = chartData.get(l + '.color');
         parametersValuesArray[l] = chartData.get(l + '.value');
-      }
-  };
+    }
+};
