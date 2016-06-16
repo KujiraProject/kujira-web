@@ -4,23 +4,68 @@
   <thead>
     <tr>
       <th>ID</th>
-      <th>Address</th>
-      <th>In quorum</th>
       <th>Name</th>
-      <th>Rank</th>
+      <th>Address</th>
       <th>Server</th>
+      <th>Show details</th>
     </tr>
   </thead>
   <tbody>
       {{#each model as |mon|}}
           <tr>
             <td> {{mon.id}} </td>
-            <td> {{mon.addr}} </td>
-            <td> {{mon.inQuorum}} </td>
             <td> {{mon.name}} </td>
-            <td> {{mon.rank}} </td>
+            <td> {{mon.addr}} </td>
             <td> {{mon.server}} </td>
+            <td class="text-center">
+                <button type="button" class="btn btn-default" {{action "openDialog" mon}}>
+                    <i class="glyphicon glyphicon-modal-window"></i>
+                    Details
+                </button>
+            </td>
           </tr>
       {{/each}}
   </tbody>
 </table>
+
+{{#bs-modal open=openModal title="Monitor details" size="lg"}}
+    {{#bs-modal-body}}
+
+        <div class="row">
+            <div class="col-md-8">
+                <h2>Information</h2>
+                <div class="table-responsive">
+                    <table class="table table-bordered kujira-vertical">
+                        <tbody>
+                            <tr>
+                                <td>ID</td>
+                                <td> {{monInModal.id}} </td>
+                            </tr>
+                            <tr>
+                                <td>Name</td>
+                                <td> {{monInModal.name}} </td>
+                            </tr>
+                            <tr>
+                                <td>Address</td>
+                                <td> {{monInModal.addr}} </td>
+                            </tr>
+                            <tr>
+                                <td>In quorum</td>
+                                <td> {{monInModal.inQuorum}} </td>
+                            </tr>
+                            <tr>
+                                <td>Rank</td>
+                                <td> {{monInModal.rank}} </td>
+                            </tr>
+                            <tr>
+                                <td>Server</td>
+                                <td> {{monInModal.server}} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    {{/bs-modal-body}}
+{{/bs-modal}}

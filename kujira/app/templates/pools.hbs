@@ -3,28 +3,102 @@
 <table class="table table-hover table-bordered">
   <thead>
     <tr>
-      <th>Full</th>
+      <th>ID</th>
       <th>Name</th>
+      <th>Full</th>
       <th>Min. Size</th>
       <th>Pg Num</th>
       <th>Pgp Num</th>
       <th>Size</th>
-      <th>ID</th>
       <th>Crush Ruleset</th>
+      <th>Show details</th>
     </tr>
   </thead>
   <tbody>
       {{#each model as |pool|}}
           <tr>
-            <td> {{pool.full}} </td>
+            <td> {{pool.id}} </td>
             <td> {{pool.name}} </td>
+            <td> {{pool.full}} </td>
             <td> {{pool.minSize}} </td>
             <td> {{pool.pgNum}} </td>
             <td> {{pool.pgpNum}} </td>
             <td> {{pool.size}} </td>
-            <td> {{pool.id}} </td>
+
             <td> {{pool.crushRuleset}} </td>
+            <td class="text-center">
+                <button type="button" class="btn btn-default" {{action "openDialog" pool}}>
+                    <i class="glyphicon glyphicon-modal-window"></i>
+                    Details
+                </button>
+            </td>
           </tr>
       {{/each}}
   </tbody>
 </table>
+
+{{#bs-modal open=openModal title="Pool details" size="lg"}}
+    {{#bs-modal-body}}
+
+        <div class="row">
+            <div class="col-md-8">
+                <h2>Information</h2>
+                <div class="table-responsive">
+                    <table class="table table-bordered kujira-vertical">
+                        <tbody>
+                            <tr>
+                                <td>ID</td>
+                                <td> {{poolInModal.id}} </td>
+                            </tr>
+                            <tr>
+                                <td>Name</td>
+                                <td> {{poolInModal.name}} </td>
+                            </tr>
+                            <tr>
+                                <td>Full</td>
+                                <td> {{poolInModal.full}} </td>
+                            </tr>
+                            <tr>
+                                <td>Quota max objects</td>
+                                <td> {{poolInModal.quotaMaxObjects}} </td>
+                            </tr>
+                            <tr>
+                                <td>Hashpspool</td>
+                                <td> {{poolInModal.hashpspool}} </td>
+                            </tr>
+                            <tr>
+                                <td>Min size</td>
+                                <td> {{poolInModal.minSize}} </td>
+                            </tr>
+                            <tr>
+                                <td>Crash replay interval</td>
+                                <td> {{poolInModal.crashReplayInterval}} </td>
+                            </tr>
+                            <tr>
+                                <td>Pg Num</td>
+                                <td> {{poolInModal.pgNum}} </td>
+                            </tr>
+                            <tr>
+                                <td>Pgp Num</td>
+                                <td> {{poolInModal.pgpNum}} </td>
+                            </tr>
+                            <tr>
+                                <td>Quota max bytes</td>
+                                <td> {{poolInModal.quotaMaxBytes}} </td>
+                            </tr>
+                            <tr>
+                                <td>Size</td>
+                                <td> {{poolInModal.size}} </td>
+                            </tr>
+                            <tr>
+                                <td>Crush ruleset</td>
+                                <td> {{poolInModal.crushRuleset}} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    {{/bs-modal-body}}
+{{/bs-modal}}
