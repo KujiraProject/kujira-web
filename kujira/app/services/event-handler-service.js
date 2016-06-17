@@ -1,41 +1,42 @@
 import Ember from 'ember';
+//import ENV from 'kujira/config/enviroment';
 
 export default Ember.Service.extend(Ember.Evented, {
-    socket: null,
+    socket: '',
     events: ["osdAdded", "osdRemoved", "OSDup", "OSDdown", "OSDrebalanced"],
 
-    onInit: function() {
-      this.set('socket',io.connect('http://localhost:5000/kujira', {
-        transports: ['websocket']
-      }));
-      var socket = this.get('socket');
-      socket.on('event notification', this.eventNotification, this);
-      socket.on('close', function() {
-        this.get('socket').set(io.close());
-      }, this);
-    }.on('init'),
+    init: function() {
+        let self = this;
+        this.set('socket', io.connect('http://localhost:5000/kujira', {
+            transports: ['websocket']
+        }));
+        var socket = this.get('socket');
+        let eventNotification = function(message) {
+            var tmp = Ember.$.inArray(message.eventType, self.events);
+            if (tmp) {
+                self.trigger(message.eventType, message.message);
+            }
+        };
 
-    eventNotification: function(message) {
-      var tmp = Ember.$.inArray(message.eventType, this.events);
-      if (tmp) {
-        this.trigger('eventNotification', message.message);
-      }
+        let graphNotification = function(event) {
+            self.trigger(event.Room, event.Data);
+        };
+        socket.on('event notification', eventNotification, this);
+        socket.on('graph notification', graphNotification, this);
+        socket.on('close', function() {
+            this.set('socket', io.connect('http://localhost:5000', {
+                transports: ['websocket']
+            }, this));
+        });
     },
 
-    joinGraph: function(graphType){
-      var socket = this.get('socket');
-      socket.emit('join', graphType);
-      socket.on('graph notification', this.graphNotification, this);
+    joinGraph: function(graphType) {
+        this.socket.emit('join', graphType);
     },
 
-    closeGraph: function(graphType){
-      var socket = this.get('socket');
-      socket.emit('leave', graphType);
+    closeGraph: function(graphType) {
+        this.socket.emit('leave', graphType);
     },
 
-    graphNotification: function(event){
-      var obj = event;
-      var data = [obj.X, obj.Y];
-      this.trigger(obj.graphType, data);
-    }
+
 });

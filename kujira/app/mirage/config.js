@@ -1,5 +1,8 @@
 import config from '../config/environment';
-
+import {
+    getOsdsChartData,
+    getNodesChartData
+} from './charts';
 export default function() {
 
 this.namespace = config.APP.NAMESPACE;
@@ -55,6 +58,32 @@ this.get('/servers', function(db){
       { type: 'servers', id: attrs.id, attributes: attrs}
     ))
   };
+});
+this.get('/servers/:id', function(db, request){
+    var id = request.params.id;
+  return {
+      data: {
+          type: 'servers',
+          id: id,
+          attributes: db.servers.find(id)
+      }
+  };
+});
+this.get('/discs', function(db, request){
+    // var id = request.params.id;
+  return {
+    data: db.discs.where({server: request.queryParams.server}).map(attrs => (
+      { type: 'disc', id: attrs.id, attributes: attrs}
+    ))
+  };
+});
+
+this.get('/osdsChartData', function() {
+    return getOsdsChartData();
+});
+
+this.get('/nodesChartData', function() {
+    return getNodesChartData();
 });
 
   // These comments are here to help you get started. Feel free to delete them.

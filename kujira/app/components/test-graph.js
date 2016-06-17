@@ -3,6 +3,13 @@ import Mixin from 'kujira/mixins/socketmixin';
 
 export default Ember.Component.extend(Mixin, {
 
+
+  graphNotification: function(message) {
+    console.log('aaa');
+    console.log('x: ' + message.x);
+    console.log('y: ' + message.y);
+  },
+
     onInit: function() {
       this._super();
       this.setRoom('LoggedIn');
