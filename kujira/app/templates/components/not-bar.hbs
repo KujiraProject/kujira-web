@@ -1,0 +1,27 @@
+<!-- /#sidebar-wrapper -->
+<!-- Sidebar -->
+
+    <ul class="right-sidebar-nav">
+      <!-- <li>
+      <ul class="nav navbar-nav">
+      <li><a href="#tab1" data-toggle="tab">Events</a></li>
+      <li><a href="#tab2" data-toggle="tab">Tasks</a></li>
+      </ul>
+    </li> -->
+    <li>{{#bs-button type="primary" classNames="primary-button" action=(action "removeFromModel" abc.name) param="parameter"}}
+      Events
+    {{/bs-button}}</li>
+      {{#each events as |abc|}}
+      <li style="background-color:{{abc.color}}" class="active">
+            <a>
+              <span class="glyphicon glyphicon-download-alt"></span>
+              {{abc.name}}
+              {{#bs-button type="primary" classNames="primary-button" action=(action "removeFromModel" abc.id) param="parameter"}}
+                Dismiss
+              {{/bs-button}}
+            </a>
+      </li>
+      {{/each}}
+
+    </ul>
+<!-- /#sidebar-wrapper -->

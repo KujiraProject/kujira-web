@@ -1,0 +1,117 @@
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #c0c0c0 !important;
+}
+#wrapper {
+    padding-right: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    padding-top: 50px;
+}
+#wrapper.toggled {
+    padding-right: 350px;
+}
+#right-sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    right: 350px;
+    width: 0;
+    height: 100%;
+    margin-right: -350px;
+    overflow-y: auto;
+    background: #323232;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+#wrapper.toggled #right-sidebar-wrapper {
+    width: 250px;
+}
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+}
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -350px;
+}
+.right-sidebar-wrapper ul navbar-nav {
+  z-index: 1000;
+  position: fixed;
+  right: 350px;
+  width: 0;
+  height: 100%;
+  margin-right: -350px;
+  position: absolute;
+  top: 0;
+  width: 350px;
+  margin: 0;
+  padding: 0px;
+  list-style: none;
+}
+/* Sidebar Styles */
+.right-sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 350px;
+    margin: 0;
+    padding: 0px;
+    list-style: none;
+}
+.right-sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+    padding: 10px 0px 10px 0px;
+    border-bottom: 1px solid rgba(107, 108, 109, 0.2);
+}
+.right-sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    color: #c0c0c0;
+}
+.right-sidebar-nav li a span{
+  float: left;
+  line-height: inherit;
+}
+.right-sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #f09b22;
+}
+.right-sidebar-nav li.selected {
+    background: #1b1b1b;
+}
+.right-sidebar-nav li a button{
+    float: right;
+    margin-right: 15px;
+}
+.right-sidebar-nav li.selected a{
+    text-decoration: none;
+    color: #f09b22;
+}
+@media(min-width:768px) {
+    #wrapper {
+        padding-right: 350px;
+    }
+    #wrapper.toggled {
+        padding-right: 0;
+    }
+    #right-sidebar-wrapper {
+        width: 350px;
+    }
+    #wrapper.toggled #right-sidebar-wrapper {
+        width: 0;
+    }
+    #page-content-wrapper {
+        padding: 20px;
+        position: relative;
+    }
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
