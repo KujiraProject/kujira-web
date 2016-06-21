@@ -1,6 +1,9 @@
 import wsClient from './websockets/client';
 import config from '../config/environment';
-
+import {
+    getOsdsChartData,
+    getNodesChartData
+} from './charts';
 export default function() {
     wsClient.connect(config.port);
   wsClient.send('event notification', {"osd-id": 1, "message": "osd failure reason"});
@@ -53,6 +56,32 @@ this.get('/servers', function(db){
       { type: 'servers', id: attrs.id, attributes: attrs, relationships: attrs.relationships}
     ))
   };
+});
+this.get('/servers/:id', function(db, request){
+    var id = request.params.id;
+  return {
+      data: {
+          type: 'servers',
+          id: id,
+          attributes: db.servers.find(id)
+      }
+  };
+});
+this.get('/discs', function(db, request){
+    // var id = request.params.id;
+  return {
+    data: db.discs.where({server: request.queryParams.server}).map(attrs => (
+      { type: 'disc', id: attrs.id, attributes: attrs}
+    ))
+  };
+});
+
+this.get('/osdsChartData', function() {
+    return getOsdsChartData();
+});
+
+this.get('/nodesChartData', function() {
+    return getNodesChartData();
 });
 
 this.get('/servers/:id', function(db, request){
