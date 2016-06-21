@@ -6,7 +6,7 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('dashboard');
+  // this.route('dashboard');
   this.route('clusters');
   this.route('nodes');
   this.route('node', {path: 'node/:hostname'});
