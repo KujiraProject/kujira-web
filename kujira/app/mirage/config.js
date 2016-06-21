@@ -1,6 +1,9 @@
+import wsClient from './websockets/client';
 import config from '../config/environment';
 
 export default function() {
+    wsClient.connect(config.port);
+  wsClient.send('event notification', {"osd-id": 1, "message": "osd failure reason"});
 
 this.namespace = config.APP.NAMESPACE;
 
