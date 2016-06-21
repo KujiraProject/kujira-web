@@ -111,6 +111,14 @@ this.get('/disks', function(db, request){
   };
 });
 
+this.get('/osdsChartData', function() {
+    return getOsdsChartData();
+});
+
+this.get('/nodesChartData', function() {
+    return getNodesChartData();
+});
+
 this.get('/users', function(db){
   return {
     data: db.users.map(attrs => (
@@ -118,6 +126,7 @@ this.get('/users', function(db){
     ))
   };
 });
+
 
 this.patch('/users/:id', function(db, request) {
   var id = parseInt(request.params.id);
