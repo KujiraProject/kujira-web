@@ -23,6 +23,20 @@ table.kujira-vertical {
     }
 }
 
+
 div.chart {
   margin: 5px;
+}
+span.HEALTH_OK {
+    color: green !important;
+}
+
+
+.HEALTH_ERR {
+   color: red !important;;
+}
+
+
+.HEALTH_WARN {
+   color: orange !important;;
 }

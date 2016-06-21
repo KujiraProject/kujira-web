@@ -17,7 +17,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        {{kujira.cluster-status cluster=model}}
+        {{kujira.cluster-status clusters=model}}
         {{#bs-dropdown tagName="li"}}
         {{#bs-dropdown-toggle}}Dropdown <span class="caret"></span>{{/bs-dropdown-toggle}}
         {{#bs-dropdown-menu}}
@@ -39,17 +39,14 @@
               {{#link-to 'dashboard' activeClass="selected" tagName="li"}}
                     <a href=""><span class="glyphicon glyphicon-dashboard"></span>Dashboard</a>
               {{/link-to}}
-              {{#link-to 'cluster' activeClass="selected" tagName="li"}}
-                    <a href=""><span class="glyphicon glyphicon-cloud"></span>Cluster</a>
+              {{#link-to 'clusters' activeClass="selected" tagName="li"}}
+                    <a href=""><span class="glyphicon glyphicon-cloud"></span>Clusters</a>
               {{/link-to}}
               {{#link-to 'nodes' activeClass="selected" tagName="li"}}
                     <a href=""><span class="glyphicon glyphicon-hdd"></span>Nodes</a>
               {{/link-to}}
               {{#link-to 'osds' activeClass="selected" tagName="li"}}
                     <a href=""><span class="glyphicon glyphicon-cd"></span>OSDs</a>
-              {{/link-to}}
-              {{#link-to 'placement-groups' activeClass="selected" tagName="li"}}
-                    <a href=""><span class="glyphicon glyphicon-th"></span>Placement Groups</a>
               {{/link-to}}
               {{#link-to 'monitors' activeClass="selected" tagName="li"}}
                     <a href=""><span class="glyphicon glyphicon-eye-open"></span>Monitors</a>
@@ -59,6 +56,9 @@
               {{/link-to}}
               {{#link-to 'settings' activeClass="selected" tagName="li"}}
                     <a href=""><span class="glyphicon glyphicon-cog"></span>Settings</a>
+              {{/link-to}}
+              {{#link-to 'settings.users' activeClass="selected" tagName="li"}}
+                    <a href="">Settings->Users</a>
               {{/link-to}}
             </ul>
         </div>

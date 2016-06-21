@@ -1,9 +1,9 @@
 export default [
   {
     "full": false,
-    "name": "data",
+    "name": "rbd",
     "quota-max-objects": 0,
-    "hashpspool": false,
+    "hashpspool": true,
     "min-size": 1,
     "crash-replay-interval": 0,
     "pg-num": 64,

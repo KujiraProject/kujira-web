@@ -2,10 +2,9 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model(){
-      return this.store.findRecord('cluster', 0);
+      return this.store.findAll('cluster');
   },
   redirect: function(){
-    // this.transitionTo('dashboard');
-    
+    //this.transitionTo('dashboard');
   }
 });
