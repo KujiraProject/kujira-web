@@ -4,7 +4,7 @@ import Ember from 'ember';
 export default Ember.Service.extend(Ember.Evented, {
     socket: '',
 
-/*    init: function() {
+    init: function() {
         let self = this;
         this.set('socket', io.connect('http://localhost:5000/kujira', {
             transports: ['websocket']
@@ -37,5 +37,4 @@ export default Ember.Service.extend(Ember.Evented, {
         this.socket.emit('leave', graphType);
     },
 
-*/
 });
