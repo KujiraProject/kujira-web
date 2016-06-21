@@ -3,5 +3,6 @@ import DS from 'ember-data';
 export default DS.Model.extend({
   name: DS.attr(),
   health: DS.attr(),
-  updateTime: DS.attr()
+  updateTime: DS.attr(),
+  epoch: DS.attr()
 });

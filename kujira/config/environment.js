@@ -5,6 +5,7 @@ module.exports = function(environment) {
     modulePrefix: 'kujira',
     environment: environment,
     baseURL: '/kujira',
+    port: 7000,
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
@@ -19,7 +20,6 @@ module.exports = function(environment) {
       // when it is created
     }
   };
-
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;

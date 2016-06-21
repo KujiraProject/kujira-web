@@ -8,7 +8,7 @@ export default Ember.Service.extend(Ember.Evented, {
 
     init: function() {
         let self = this;
-        this.set('socket', io.connect('http://localhost:7000', {
+        this.set('socket', io.connect('http://localhost:5000/kujira', {
             transports: ['websocket']
         }));
         var socket = this.get('socket');
@@ -25,7 +25,7 @@ export default Ember.Service.extend(Ember.Evented, {
         socket.on('event notification', eventNotification, this);
         socket.on('graph notification', graphNotification, this);
         socket.on('close', function() {
-            this.set('socket', io.connect('http://localhost:7000', {
+            this.set('socket', io.connect('http://localhost:5000', {
                 transports: ['websocket']
             }, this));
         });
