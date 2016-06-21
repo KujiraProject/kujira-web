@@ -11,6 +11,7 @@ module.exports = function(defaults) {
           'info-box': '/assets/info-box.css',
           'navbar': '/assets/navbar.css',
           'sidemenu': '/assets/sidemenu.css',
+          'rightsidemenu': '/assets/rightsidemenu.css',
         }
       }
   }

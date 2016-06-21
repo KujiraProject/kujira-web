@@ -1,0 +1,62 @@
+<!-- /#sidebar-wrapper -->
+<!-- Sidebar -->
+
+
+    <ul class="right-sidebar-nav">
+      <!-- <li>
+      <ul class="nav navbar-nav">
+      <li><a href="#tab1" data-toggle="tab">Events</a></li>
+      <li><a href="#tab2" data-toggle="tab">Tasks</a></li>
+      </ul>
+    </li> -->
+    {{#if changeModel}}
+    <li>{{#bs-button type="primary" classNames="primary-button" action=(action "changeModel") param="parameter"}}
+      Tasks
+    {{/bs-button}}</li>
+    {{#each events as |abc|}}
+    <li style="background-color:{{abc.color}}" class="active">
+          <a>
+            <span class="glyphicon glyphicon-download-alt"></span>
+            {{abc.name}}
+            {{#bs-button type="primary" classNames="primary-button" action=(action "removeFromModel" abc.id) param="parameter"}}
+              Dismiss
+            {{/bs-button}}
+          </a>
+    </li>
+    {{/each}}
+    {{else}}
+    <li>{{#bs-button type="primary" classNames="primary-button" action=(action "changeModel") param="parameter"}}
+      Events
+    {{/bs-button}}</li>
+    {{#each tasks as |abc|}}
+    {{log abc}}
+        {{#if (eq abc._data.status "PENDING")}}
+          <li style="background-color:yellow" class="active">
+            <a>
+              <span class="glyphicon glyphicon-download-alt"></span>
+             {{abc._data.title}}
+             {{#each abc._data.subtasks as |subtask|}}
+                <li style="background-color:orange" class="active">
+                {{subtask.title}}
+                </li>
+              {{/each}}
+
+            </a>
+      </li>
+        {{else}}
+          <li style="background-color:green" class="active">
+            <a>
+              <span class="glyphicon glyphicon-download-alt"></span>
+            {{abc._data.title}}
+            <!--   {{#each abc.subtasks as |abc|}}
+                {{abc._data.title}}
+              {{/each}} -->
+            </a>
+      </li>
+        {{/if}}
+
+
+    {{/each}}
+    {{/if}}
+    </ul>
+<!-- /#sidebar-wrapper -->
