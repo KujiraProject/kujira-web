@@ -56,21 +56,22 @@ export default Ember.Component.extend(Mixin, {
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("Y")
+      .text("Y");
 
     dat.forEach(function(point) {
       canvas.append("circle")
         .attr("r", 1.5)
         .attr("cx", x(point.x + 5))
-        .attr("cy", y(point.y + 5))
+        .attr("cy", y(point.y + 5));
     });
   },
 
   graphNotification: function(message) {
     let self = this;
     self.graphData.push(message);
-    if(self.graphData.length > 100)
+    if(self.graphData.length > 100) {
       self.graphData.shift();
+    }
     this.drawChart();
   },
 
