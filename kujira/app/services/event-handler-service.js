@@ -1,28 +1,26 @@
 import Ember from 'ember';
-//import ENV from 'kujira/config/enviroment';
-/* global io */
 
+/* global io */
 export default Ember.Service.extend(Ember.Evented, {
     socket: '',
-    events: ["osdAdded", "osdRemoved", "OSDup", "OSDdown", "OSDrebalanced"],
 
-    init: function() {
+/*    init: function() {
         let self = this;
         this.set('socket', io.connect('http://localhost:5000/kujira', {
             transports: ['websocket']
         }));
         var socket = this.get('socket');
         let eventNotification = function(message) {
-            var tmp = Ember.$.inArray(message.eventType, self.events);
-            if (tmp) {
-                self.trigger(message.eventType, message.message);
-            }
+            console.log(message);
+            self.trigger('eventNotification', message);
+
         };
 
         let graphNotification = function(event) {
+            console.log(event.Room);
             self.trigger(event.Room, event.Data);
         };
-        socket.on('event notification', eventNotification, this);
+        socket.on('event notification', eventNotification);
         socket.on('graph notification', graphNotification, this);
         socket.on('close', function() {
             this.set('socket', io.connect('http://localhost:5000', {
@@ -39,5 +37,5 @@ export default Ember.Service.extend(Ember.Evented, {
         this.socket.emit('leave', graphType);
     },
 
-
+*/
 });
