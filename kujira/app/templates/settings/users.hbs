@@ -1,0 +1,32 @@
+<h2>Users</h2>
+
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Role</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+      {{#each model as |user|}}
+          <tr>
+            <td> {{user.id}} </td>
+            <td> {{user.name}} </td>
+            <td>
+              Now: <b>{{user.role}}</b>
+              <select class="form-control" id="user{{user.id}}RoleSelection">
+                      <option value="">Select new role</option>
+                      <option value="superusers">superusers</option>
+                      <option value="admins">admins</option>
+                      <option value="guests">guests</option>
+              </select>
+
+               </td>
+            <td align="center"><button type="button" id="user{{user.id}}Save" class="btn btn-default"
+              {{action "save" user}} > save </button></td>
+          </tr>
+      {{/each}}
+  </tbody>
+</table>

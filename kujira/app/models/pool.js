@@ -2,10 +2,14 @@ import DS from 'ember-data';
 
 export default DS.Model.extend({
   full: DS.attr(),
+  quotaMaxObjects: DS.attr(),
+  hashpspool: DS.attr(),
   name: DS.attr(),
-  min_size: DS.attr(),
-  pg_num: DS.attr(),
-  pgp_num: DS.attr(),
+  crashReplayInterval: DS.attr(),
+  minSize: DS.attr(),
+  pgNum: DS.attr(),
+  quotaMaxBytes: DS.attr(),
+  pgpNum: DS.attr(),
   size: DS.attr(),
-  crush_ruleset: DS.attr()
+  crushRuleset: DS.attr()
 });

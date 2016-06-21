@@ -10,3 +10,29 @@ body > .ember-view, .ember-app, #wrapper {
 #page-content-wrapper {
     min-height: 94vh;
 }
+
+.kujira-node-details {
+    table {
+        background-color: #f5f5f5;
+    }
+}
+
+table.kujira-vertical {
+    tr td:first-child {
+        font-weight: bold;
+    }
+}
+
+span.HEALTH_OK {
+    color: green !important;
+}
+
+
+.HEALTH_ERR {
+   color: red !important;;
+}
+
+
+.HEALTH_WARN {
+   color: orange !important;;
+}

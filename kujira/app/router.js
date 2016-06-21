@@ -7,13 +7,15 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('dashboard');
-  this.route('cluster');
+  this.route('clusters');
   this.route('nodes');
+  this.route('node', {path: 'node/:hostname'});
   this.route('osds');
-  this.route('placement-groups');
   this.route('monitors');
   this.route('pools');
-  this.route('settings');
+  this.route('settings', function() {
+    this.route('users');
+  });
 });
 
 export default Router;

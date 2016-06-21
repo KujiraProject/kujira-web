@@ -1,0 +1,23 @@
+<h2>Clusters</h2>
+
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Update time</th>
+    </tr>
+  </thead>
+  <tbody>
+      {{#each model as |cluster|}}
+          <tr>
+            <td> {{cluster.id}} </td>
+            <td> {{cluster.name}} </td>
+            <td> {{cluster.updateTime}} </td>
+          </tr>
+      {{/each}}
+  </tbody>
+</table>
+<div class="pointGraph">
+{{charts/point-graph}}
+</div>

@@ -1,0 +1,163 @@
+<div class="kujira-node-details">
+    <div class="row">
+        <ol class="breadcrumb">
+            {{#link-to 'nodes' tagName="li"}}
+                <a href="">Nodes</a>
+            {{/link-to}}
+            <li class="active">{{model.server.hostname}}</li>
+        </ol>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Node details</h2>
+            <table class="table table-bordered kujira-vertical">
+                <tbody>
+                    <tr>
+                        <td>Hostname</td>
+                        <td>{{model.server.hostname}}</td>
+                    </tr>
+                    <tr>
+                        <td>Last connection</td>
+                        <td>{{model.server.lastContact}}</td>
+                    </tr>
+                    <tr>
+                        <td>Managed</td>
+                        <td>{{model.server.managed}}</td>
+                    </tr>
+                    <tr>
+                        <td>Boot Time</td>
+                        <td>{{model.server.bootTime}}</td>
+                    </tr>
+                    <tr>
+                        <td>Ceph Version</td>
+                        <td>{{model.server.cephVersion}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-8">
+            <h2>Disks</h2>
+            <div class="table-responsive">
+                <table class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Disk</th>
+                            <th>OSD Status</th>
+                            <th>OSD Weight</th>
+                            <th>Server</th>
+                            <th>Data Device Status</th>
+                            <th>Data Device Capacity (MB)</th>
+                            <th>Show details</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each model.disks as |disk|}}
+                        <tr>
+                            <td> {{disk.name}} </td>
+                            <td> {{disk.osdStatus}} </td>
+                            <td> {{disk.osdWeight}} </td>
+                            <td> {{disk.server}} </td>
+                            <td> {{disk.dataDeviceStatus}} </td>
+                            <td> {{disk.dataDeviceCapacityMB}} </td>
+                            <td class="text-center">
+                                <button type="button" class="btn btn-default" {{action "openDialog" disk}}>
+                                    <i class="glyphicon glyphicon-modal-window"></i>
+                                    Details
+                                </button>
+                            </td>
+                            <td class="text-center">
+                                {{#if disk.inOSD }}
+
+                                <button type="button" class="btn btn-danger" {{action "openDialog" disk}}>
+                                    <i class="glyphicon glyphicon-remove"></i>
+                                    Remove OSD
+                                </button>
+                                {{else}}
+                                <button type="button" class="btn btn-success" {{action "openDialog" disk}}>
+                                    <i class="glyphicon glyphicon-add"></i>
+                                    Add OSD
+                                </button>
+                                {{/if}}
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {{#bs-modal open=openModal title="Disk details" size="lg"}}
+        {{#bs-modal-body}}
+
+            <div class="row">
+                <div class="col-md-8">
+                    <h2>Information</h2>
+                    <div class="table-responsive">
+                        <table class="table table-bordered kujira-vertical">
+                            <tbody>
+                                <tr>
+                                    <td>Disk</td>
+                                    <td> {{diskInModal.name}} </td>
+                                </tr>
+                                <tr>
+                                    <td>OSD Status</td>
+                                    <td> {{diskInModal.osdStatus}} </td>
+                                </tr>
+                                <tr>
+                                    <td>OSD Weight</td>
+                                    <td> {{diskInModal.osdWeight}} </td>
+                                </tr>
+                                <tr>
+                                    <td>Server</td>
+                                    <td> {{diskInModal.server}} </td>
+                                </tr>
+                                <tr>
+                                    <td>Data Device Path</td>
+                                    <td> {{diskInModal.dataDevicePath}} </td>
+                                </tr>
+                                <tr>
+                                    <td>Data Device Status</td>
+                                    <td> {{diskInModal.dataDeviceStatus}} </td>
+                                </tr>
+                                <tr>
+                                    <td>Data Device Capacity (MB)</td>
+                                    <td> {{diskInModal.dataDeviceCapacityMB}} </td>
+                                </tr>
+                                <tr>
+                                    <td>Data Device Used (MB)</td>
+                                    <td> {{diskInModal.dataDeviceUsedMB}} </td>
+                                </tr>
+                                <tr>
+                                    <td>Data Device Available (MB)</td>
+                                    <td> {{diskInModal.dataDeviceAvailableMB}} </td>
+                                </tr>
+                                <tr>
+                                    <td>Journal Device Path</td>
+                                    <td> {{diskInModal.journalDevicePath}} </td>
+                                </tr>
+                                <tr>
+                                    <td>Journal Device Status</td>
+                                    <td> {{diskInModal.journalDeviceStatus}} </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h2>Action</h2>
+                    {{#if diskInModal.inOSD }}
+                    {{#bs-button type="danger" icon="glyphicon glyphicon-remove" action="removeOSD"}}
+                        Remove OSD
+                    {{/bs-button}}
+                    {{else}}
+                    {{#bs-button type="success" icon="glyphicon glyphicon-add" action="addOSD"}}
+                        Add OSD
+                    {{/bs-button}}
+                    {{/if}}
+                </div>
+            </div>
+
+        {{/bs-modal-body}}
+    {{/bs-modal}}
+ </div>

@@ -5,5 +5,6 @@ export default DS.Model.extend({
   lastContact: DS.attr(),
   hostname: DS.attr(),
   bootTime: DS.attr(),
-  cephVersion: DS.attr()
+  cephVersion: DS.attr(),
+  services: DS.attr()
 });
