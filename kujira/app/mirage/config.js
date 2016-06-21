@@ -4,6 +4,14 @@ export default function() {
 
 this.namespace = config.APP.NAMESPACE;
 
+this.get('/tasks', function(db){
+  return {
+    data: db.tasks.map(attrs => (
+      { type: 'tasks', id: attrs.id, attributes: attrs}
+    ))
+  };
+});
+
 this.get('/clusters', function(db){
   return {
     data: db.clusters.map(attrs => (

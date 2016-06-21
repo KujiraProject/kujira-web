@@ -2,6 +2,9 @@ import Ember from 'ember';
 import Mixin from 'kujira/mixins/socketmixin';
 
 export default Ember.Component.extend(Mixin, {
+    store: Ember.inject.service(),
+    changeModel: true,
+    tasks: ' ',
     events: [],
     eventsSize: 0,
 
@@ -15,6 +18,15 @@ export default Ember.Component.extend(Mixin, {
                 }
             }
             this.rerender();
+        },
+        changeModel() {
+            if(this.changeModel===true) {
+              this.set('changeModel',false);
+            }
+            else {
+              this.set('changeModel',true);
+            }
+            console.log(this.changeModel);
         }
     },
 
@@ -28,6 +40,10 @@ export default Ember.Component.extend(Mixin, {
         var room = new Object();
         room.room = 'LoggedIn';
         this.set('graphType', room);
+        this.get('store').findAll('task').then(function (result) {
+          self.set('tasks',result._prevContent);
+          console.log(self.tasks[0]._data);
+        });
         this.join();
         this.get('serv').on('eventNotification', function(event) {
             var eventColor;
