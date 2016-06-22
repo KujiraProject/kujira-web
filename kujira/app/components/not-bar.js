@@ -4,20 +4,14 @@ import Mixin from 'kujira/mixins/socketmixin';
 export default Ember.Component.extend(Mixin, {
     store: Ember.inject.service(),
     changeModel: true,
-    tasks: ' ',
+    tasks: [],
     events: [],
     eventsSize: 0,
 
     actions: {
-
         removeFromModel: function(id) {
             var tab = this.get('events');
-            for (var i = 0; i < tab.length; i++) {
-                if (tab[i].id === id) {
-                    tab.splice(i, 1);
-                }
-            }
-            this.rerender();
+            tab.removeObject(id);
         },
         changeModel() {
             if(this.changeModel===true) {
@@ -26,7 +20,6 @@ export default Ember.Component.extend(Mixin, {
             else {
               this.set('changeModel',true);
             }
-            console.log(this.changeModel);
         }
     },
 

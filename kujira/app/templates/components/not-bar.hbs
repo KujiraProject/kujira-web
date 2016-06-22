@@ -1,62 +1,215 @@
 <!-- /#sidebar-wrapper -->
 <!-- Sidebar -->
-
-
-    <ul class="right-sidebar-nav">
-      <!-- <li>
-      <ul class="nav navbar-nav">
-      <li><a href="#tab1" data-toggle="tab">Events</a></li>
-      <li><a href="#tab2" data-toggle="tab">Tasks</a></li>
-      </ul>
-    </li> -->
+  <ul class="right-sidebar-nav">
     {{#if changeModel}}
     <li>{{#bs-button type="primary" classNames="primary-button" action=(action "changeModel") param="parameter"}}
-      Tasks
+      Show Tasks
     {{/bs-button}}</li>
-    {{#each events as |abc|}}
-    <li style="background-color:{{abc.color}}" class="active">
+    {{#each events as |event|}}
+    <li style="background-color:{{event.color}}" class="active">
           <a>
             <span class="glyphicon glyphicon-download-alt"></span>
-            {{abc.name}}
-            {{#bs-button type="primary" classNames="primary-button" action=(action "removeFromModel" abc.id) param="parameter"}}
+            {{event.name}}
+            {{#bs-button type="primary" classNames="primary-button" action=(action "removeFromModel" event) param="parameter"}}
               Dismiss
             {{/bs-button}}
           </a>
     </li>
     {{/each}}
     {{else}}
-    <li>{{#bs-button type="primary" classNames="primary-button" action=(action "changeModel") param="parameter"}}
-      Events
-    {{/bs-button}}</li>
-    {{#each tasks as |abc|}}
-    {{log abc}}
-        {{#if (eq abc._data.status "PENDING")}}
-          <li style="background-color:yellow" class="active">
-            <a>
-              <span class="glyphicon glyphicon-download-alt"></span>
-             {{abc._data.title}}
-             {{#each abc._data.subtasks as |subtask|}}
-                <li style="background-color:orange" class="active">
-                {{subtask.title}}
-                </li>
+      <li>{{#bs-button type="primary" classNames="primary-button" action=(action "changeModel") param="parameter"}}
+        Show Events
+      {{/bs-button}}</li>
+      {{#each tasks as |task|}}
+          {{#if (eq task._data.status "PENDING")}}
+            <li style="background-color:#4A4ACC" class="active">
+              <a>
+                <span class="glyphicon glyphicon-download-alt"></span>
+               <font color="black">{{{task._data.title}}}</font>
+               <font size="1" color="black">{{task._data.date}}</font>
+               {{#each task._data.subtasks as |subtask|}}
+                     {{#if (eq subtask.status "PENDING")}}
+                     <li style="background-color:#A4A4E5" class="active">
+                       <a>
+                         <span class="glyphicon glyphicon-download-alt"></span>
+                        <font color="black">{{{subtask.title}}}</font>
+                        <font size="1" color="black">{{subtask.date}}</font>
+                       </a>
+                     </li>
+                    {{/if}}
+                    {{#if (eq subtask.status "RUNNING")}}
+                     <li style="background-color:#F6F69F" class="active">
+                       <a>
+                         <span class="glyphicon glyphicon-download-alt"></span>
+                        <font color="black">{{{subtask.title}}}</font>
+                        <font size="1" color="black">{{subtask.date}}</font>
+                       </a>
+                     </li>
+                    {{/if}}
+                    {{#if (eq subtask.status "SUCCESS")}}
+                     <li style="background-color:#99DBBD" class="active">
+                       <a>
+                         <span class="glyphicon glyphicon-download-alt"></span>
+                        <font color="black">{{{subtask.title}}}</font>
+                        <font size="1" color="black">{{subtask.date}}</font>
+                       </a>
+                     </li>
+                    {{/if}}
+                    {{#if (eq subtask.status "FAIL")}}
+                     <li style="background-color:#F1ADBB" class="active">
+                       <a>
+                         <span class="glyphicon glyphicon-download-alt"></span>
+                        <font color="black">{{{subtask.title}}}</font>
+                        <font size="1" color="black">{{subtask.date}}</font>
+                       </a>
+                     </li>
+                    {{/if}}
               {{/each}}
-
-            </a>
-      </li>
-        {{else}}
-          <li style="background-color:green" class="active">
-            <a>
-              <span class="glyphicon glyphicon-download-alt"></span>
-            {{abc._data.title}}
-            <!--   {{#each abc.subtasks as |abc|}}
-                {{abc._data.title}}
-              {{/each}} -->
-            </a>
-      </li>
-        {{/if}}
-
-
+              </a>
+            </li>
+          {{/if}}
+          {{#if (eq task._data.status "RUNNING")}}
+            <li style="background-color:#EEEE3F" class="active">
+              <a>
+                <span class="glyphicon glyphicon-download-alt"></span>
+               <font color="black">{{{task._data.title}}}</font>
+               <font size="1" color="black">{{task._data.date}}</font>
+               {{#each task._data.subtasks as |subtask|}}
+                     {{#if (eq subtask.status "PENDING")}}
+                     <li style="background-color:#A4A4E5" class="active">
+                       <a>
+                         <span class="glyphicon glyphicon-download-alt"></span>
+                        <font color="black">{{{subtask.title}}}</font>
+                        <font size="1" color="black">{{subtask.date}}</font>
+                       </a>
+                     </li>
+                    {{/if}}
+                    {{#if (eq subtask.status "RUNNING")}}
+                     <li style="background-color:#F6F69F" class="active">
+                       <a>
+                         <span class="glyphicon glyphicon-download-alt"></span>
+                        <font color="black">{{{subtask.title}}}</font>
+                        <font size="1" color="black">{{subtask.date}}</font>
+                       </a>
+                     </li>
+                    {{/if}}
+                    {{#if (eq subtask.status "SUCCESS")}}
+                     <li style="background-color:#99DBBD" class="active">
+                       <a>
+                         <span class="glyphicon glyphicon-download-alt"></span>
+                        <font color="black">{{{subtask.title}}}</font>
+                        <font size="1" color="black">{{subtask.date}}</font>
+                       </a>
+                     </li>
+                    {{/if}}
+                    {{#if (eq subtask.status "FAIL")}}
+                     <li style="background-color:#F1ADBB" class="active">
+                       <a>
+                         <span class="glyphicon glyphicon-download-alt"></span>
+                        <font color="black">{{{subtask.title}}}</font>
+                        <font size="1" color="black">{{subtask.date}}</font>
+                       </a>
+                     </li>
+                    {{/if}}
+              {{/each}}
+              </a>
+            </li>
+          {{/if}}
+          {{#if (eq task._data.status "SUCCESS")}}
+            <li style="background-color:#00a65a" class="active">
+              <a>
+                <span class="glyphicon glyphicon-download-alt"></span>
+               <font color="black">{{{task._data.title}}}</font>
+               <font size="1" color="black">{{task._data.date}}</font>
+               {{#each task._data.subtasks as |subtask|}}
+                     {{#if (eq subtask.status "PENDING")}}
+                     <li style="background-color:#A4A4E5" class="active">
+                       <a>
+                         <span class="glyphicon glyphicon-download-alt"></span>
+                        <font color="black">{{{subtask.title}}}</font>
+                        <font size="1" color="black">{{subtask.date}}</font>
+                       </a>
+                     </li>
+                    {{/if}}
+                    {{#if (eq subtask.status "RUNNING")}}
+                     <li style="background-color:#F6F69F" class="active">
+                       <a>
+                         <span class="glyphicon glyphicon-download-alt"></span>
+                        <font color="black">{{{subtask.title}}}</font>
+                        <font size="1" color="black">{{subtask.date}}</font>
+                       </a>
+                     </li>
+                    {{/if}}
+                    {{#if (eq subtask.status "SUCCESS")}}
+                     <li style="background-color:#99DBBD" class="active">
+                       <a>
+                         <span class="glyphicon glyphicon-download-alt"></span>
+                        <font color="black">{{{subtask.title}}}</font>
+                        <font size="1" color="black">{{subtask.date}}</font>
+                       </a>
+                     </li>
+                    {{/if}}
+                    {{#if (eq subtask.status "FAIL")}}
+                     <li style="background-color:#F1ADBB" class="active">
+                       <a>
+                         <span class="glyphicon glyphicon-download-alt"></span>
+                        <font color="black">{{{subtask.title}}}</font>
+                        <font size="1" color="black">{{subtask.date}}</font>
+                       </a>
+                     </li>
+                    {{/if}}
+              {{/each}}
+              </a>
+            </li>
+          {{/if}}
+          {{#if (eq task._data.status "FAIL")}}
+            <li style="background-color:#DD3355" class="active">
+              <a>
+                <span class="glyphicon glyphicon-download-alt"></span>
+               <font color="black">{{{task._data.title}}}</font>
+               <font size="1" color="black">{{task._data.date}}</font>
+               {{#each task._data.subtasks as |subtask|}}
+                     {{#if (eq subtask.status "PENDING")}}
+                     <li style="background-color:#A4A4E5" class="active">
+                       <a>
+                         <span class="glyphicon glyphicon-download-alt"></span>
+                        <font color="black">{{{subtask.title}}}</font>
+                        <font size="1" color="black">{{subtask.date}}</font>
+                       </a>
+                     </li>
+                    {{/if}}
+                    {{#if (eq subtask.status "RUNNING")}}
+                     <li style="background-color:#F6F69F" class="active">
+                       <a>
+                         <span class="glyphicon glyphicon-download-alt"></span>
+                        <font color="black">{{{subtask.title}}}</font>
+                        <font size="1" color="black">{{subtask.date}}</font>
+                       </a>
+                     </li>
+                    {{/if}}
+                    {{#if (eq subtask.status "SUCCESS")}}
+                     <li style="background-color:#99DBBD" class="active">
+                       <a>
+                         <span class="glyphicon glyphicon-download-alt"></span>
+                        <font color="black">{{{subtask.title}}}</font>
+                        <font size="1" color="black">{{subtask.date}}</font>
+                       </a>
+                     </li>
+                    {{/if}}
+                    {{#if (eq subtask.status "FAIL")}}
+                     <li style="background-color:#F1ADBB" class="active">
+                       <a>
+                         <span class="glyphicon glyphicon-download-alt"></span>
+                        <font color="black">{{{subtask.title}}}</font>
+                        <font size="1" color="black">{{subtask.date}}</font>
+                       </a>
+                     </li>
+                    {{/if}}
+              {{/each}}
+              </a>
+            </li>
+          {{/if}}
     {{/each}}
-    {{/if}}
-    </ul>
+  {{/if}}
+</ul>
 <!-- /#sidebar-wrapper -->
