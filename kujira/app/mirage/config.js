@@ -4,7 +4,7 @@ export default function() {
 
 this.namespace = config.APP.NAMESPACE;
 
-this.get('/clusters', function(db){ 
+this.get('/clusters', function(db){
   return {
     data: db.clusters.map(attrs => (
       { type: 'clusters', id: attrs.id, attributes: attrs}
@@ -45,6 +45,14 @@ this.get('/pools', function(db){
 });
 
 this.get('/servers', function(db){
+  return {
+    data: db.servers.map(attrs => (
+      { type: 'servers', id: attrs.id, attributes: attrs, relationships: attrs.relationships}
+    ))
+  };
+});
+
+this.get('/servers-info', function(db){
   return {
     data: db.servers.map(attrs => (
       { type: 'servers', id: attrs.id, attributes: attrs, relationships: attrs.relationships}
