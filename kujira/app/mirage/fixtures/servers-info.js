@@ -1,0 +1,99 @@
+export default [
+{
+  "id": "node1",
+  "relationships":[
+         {
+            "data":{
+               "attributes":{
+                  "running":true,
+                  "fsid":"89bb8cdb-7393-4def-9f76-863a90b12009"
+               },
+               "type":"osds",
+               "id":"0"
+            }
+         },
+         {
+            "data":{
+               "attributes":{
+                  "running":true,
+                  "fsid":"89bb8cdb-7393-4def-9f76-863a90b12009"
+               },
+               "type":"mons",
+               "id":"node1"
+            }
+         }
+      ],
+         "ceph-version":"0.94.6-0.el7",
+         "managed":true,
+         "hostname":"node1",
+         "storage":{
+            "available":"1207M",
+            "disks_count":"3",
+            "hostname":"node1",
+            "disks":[
+               {
+                  "/dev/sdb":{
+                     "available":"858M",
+                     "mounted":"/var/lib/ceph/osd/ceph-0",
+                     "disk_path_id":"pci-0000:00:0d.0-ata-4.0",
+                     "used":"34M",
+                     "size":"892M"
+                  }
+               },
+               {
+                  "/dev/sdc":{
+                     "available":"349M",
+                     "mounted":"/boot",
+                     "disk_path_id":"pci-0000:00:01.1-ata-1.0",
+                     "used":"148M",
+                     "size":"497M"
+                  }
+               },
+               {
+                  "/dev/sda":{
+                     "type":"operating-system",
+                     "name":"sda",
+                     "disk_path_id":"pci-0000:00:0d.0-ata-3.0"
+                  }
+               }
+            ],
+            "size":"1389M"
+         },
+         "fqdn":"node1",
+         "boot-time":"2016-06-21T16:47:46+00:00",
+         "last-contact":"2016-06-21T16:52:32.085870+00:00"
+},
+{
+        "id": "node2",
+        "relationships":[
+
+         ],
+         "ceph-version":null,
+        "managed":true,
+        "hostname":"node2",
+        "storage":{
+           "available":"0M",
+           "disks_count":"0",
+           "hostname":"node2",
+           "disks":[
+
+           ],
+           "size":"0M"
+        },
+        "fqdn":"node2",
+        "boot-time":"2016-06-21T16:47:49+00:00",
+        "last-contact":"2016-06-21T16:52:30.901782+00:00"
+},
+{
+        "id": "mng",
+        "relationships":[
+
+      ],
+      "ceph-version":null,
+         "managed":true,
+         "hostname":"mng",
+         "fqdn":"mng",
+         "boot-time":"2016-06-21T16:47:52+00:00",
+         "last-contact":"2016-06-21T16:52:29.109071+00:00"
+}
+];
