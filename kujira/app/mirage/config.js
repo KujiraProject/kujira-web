@@ -65,6 +65,15 @@ this.get('/servers', function(db){
     ))
   };
 });
+
+this.get('/servers-info', function(db){
+  return {
+    data: db.servers.map(attrs => (
+      { type: 'servers', id: attrs.id, attributes: attrs, relationships: attrs.relationships}
+    ))
+  };
+});
+
 this.get('/servers/:id', function(db, request){
     var id = request.params.id;
   return {
